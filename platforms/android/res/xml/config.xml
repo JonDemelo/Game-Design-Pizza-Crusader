@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.cordova.hellocordova" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <preference name="loglevel" value="DEBUG" />
-    <name>HelloCordova</name>
+    <name>Pizza Crusader</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        For years, a battle of power and pizza has raged across the city of Salem. With your might and intuition, can you rise up against all opposing pizza empires and restore your rightful place as Salem’s supreme pizza franchise?
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="jdemelo8@uwo.ca" href="uwo.ca">
+        Pizza Crusader Team - Jonathan Demelo, Ramesh Raj
     </author>
     <content src="index.html" />
     <access origin="*" />
