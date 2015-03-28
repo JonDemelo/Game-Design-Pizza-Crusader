@@ -16,7 +16,7 @@ var GameBoard = function(){
 		this.regions.push(new Region(1))
 	}
 	this.currentRound = 1;
-	this.numberOfRounds = 5;
+	this.numberOfRounds = 3;
 }
 
 GameBoard.prototype.assignDeliveries = function(playerId,regionId, numDeliveries){
@@ -28,6 +28,7 @@ GameBoard.prototype.assignDeliveries = function(playerId,regionId, numDeliveries
 GameBoard.prototype.endRound = function(){
 	//update which region belongs to which player
 	var self = this;
+	this.currentRound++;
 	this.regions.forEach(function(region){
 		var owner = null;
 		var ownerDeliveries = 0;
@@ -55,18 +56,45 @@ GameBoard.prototype.endRound = function(){
 }
 
 
-GameBoard.prototype.isGameOver = function(playerId){
-	var player = this.regions[0].player;
-	var isOver = true;
+GameBoard.prototype.isGameOver = function(){
+	if ( this.currentRound >= this.numberOfRounds){
+		return true;
+	}
+
+	var player = this.regions[0].playerId;
+	return this.regions.every(function(region){
+		return region.playerId == player;
+	});
+
+}
+
+GameBoard.prototype.getWinner = function(){
+	
+	var numRegionsByPlayer = [];
 	this.regions.forEach(function(region){
-		if ( region.player != player){
-			isOver = false;
-			return false;
+		if ( region.playerId != null){
+			var val = numRegionsByPlayer[region.playerId];
+			if ( val == null){
+				val = 1;
+			}else{
+				val++;
+			}
+			numRegionsByPlayer[region.playerId] = val;
 		}
 	});
 
-	return isOver;
-}
+	var winner = 0;
+	var numberOfRegions = 0;
 
+	numRegionsByPlayer.forEach(function(num,i){
+		if(num>numberOfRegions){
+			winner = i;
+		}
+		numberOfRegions = num;
+	})
+
+	return winner;
+
+}
 
 gameBoard = new GameBoard();

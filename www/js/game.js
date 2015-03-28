@@ -14,7 +14,6 @@ game.currentRound = 0;
 game.newGame = function(){
 	game.currentState = 'PRE';
 	$.mobile.changePage(game.page['PRE']);
-	game.currentRound = 1;
 	gameBoard = new GameBoard();
 	initializePlayers();
 };
@@ -72,7 +71,7 @@ game.initialize = function(){
 
 	/* ongoing round function */
 	pageLoadHandler(game.page['ROUND'],function(event){
-		$("#round-current-round").text(game.currentRound);
+		$("#round-current-round").text(gameBoard.currentRound);
 		countDown(5,
 			function(time){
 				$("#round-timer").text(time);	
@@ -108,15 +107,18 @@ game.initialize = function(){
 				$("#post-round-timer").text(time);		
 			},
 			function(){
-				game.currentRound++;
 				//TODO: check if any winners
-				if ( game.currentRound >= 3 ){
+				if ( gameBoard.isGameOver() ){
 					$.mobile.changePage(game.page['END']);
 				}else{
 					$.mobile.changePage(game.page['PRE']);
 				}
 			}
 		)
+	})
+
+	pageLoadHandler(game.page['END'],function(event){
+		console.log(gameBoard.getWinner())
 	})
 
 };

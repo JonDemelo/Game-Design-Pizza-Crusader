@@ -1,6 +1,4 @@
 var Player = function(color){
-	this.numResources = 4;
-	this.controlledRegions = [];
 	this.color = color;
 }
 
@@ -21,4 +19,7 @@ function initializePlayers(){
 	gameBoard.players.push(botPlayer);
 	currentPlayer.id = gameBoard.players.length;
 	gameBoard.players.push(currentPlayer);
+
+	botPlayer.numResources = 4;
+	currentPlayer.numResources = 4;
 }
