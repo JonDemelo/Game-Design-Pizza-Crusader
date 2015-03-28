@@ -1,17 +1,19 @@
 
 /**
  * represents a region. 
- * each region has a player and a number of resources it generates
+ * each region has a number of resources it generates
  */
-var Region = function(player,generator){
+var Region = function(generator){
 	this.generator = typeof generator !== 'undefined'? generator : 0;
-	this.player = player;
 	this.incomingDeliveries = [];
 }
 
 var GameBoard = function(){
 	this.players = [];
 	this.regions = [];
+	for(i = 0;i<10;i++){
+		this.regions.push(new Region(1))
+	}
 }
 
 GameBoard.prototype.assignDeliveries = function(playerId,regionId, numDeliveries){

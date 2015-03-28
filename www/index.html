@@ -47,19 +47,6 @@
             </div>
         </div>
 
-        <!-- Play game screen -->
-        <div data-role="page" id="page-play-game">
-            <title>Pizza Crusader</title>
-            <div data-role="header" data-position="fixed">
-                <a href="#page-main-menu" class="ui-btn ui-icon-back ui-btn-icon-left">Back</a>
-                <h1>Matchmaking</h1>
-            </div>
-
-            <div role="main" class="ui-content">
-                <p>Play game!</p>
-            </div>
-        </div>
-
         <!--  High scores screen -->
         <div data-role="page" id="page-high-scores">
             <title>Pizza Crusader</title>
@@ -122,6 +109,19 @@
         </div>
 
         <!-- various game screens -->
+        <!-- Play game screen -->
+        <div data-role="page" id="page-play-game">
+            <title>Pizza Crusader</title>
+            <div data-role="header" data-position="fixed">
+                <a href="#page-main-menu" class="ui-btn ui-icon-back ui-btn-icon-left">Back</a>
+                <h1>Matchmaking</h1>
+            </div>
+
+            <div role="main" class="ui-content">
+                <button id="play-game">Play game!</buton>
+            </div>
+        </div>
+
         <!-- Pre round -->
         <div data-role="page" id="page-game-pre-round">
             <div role="main" class="ui-content">
@@ -136,6 +136,8 @@
                 <div id="round-timer"></div>
                 <div id="round-current-round"></div>
                 <button id="pause">Pause</div>
+                <input type="text" placeholder="region id" id="in-deliver-region"/>
+                <button id="btn-deliver">Deliver</button>
                 <pre id="debug-info">
                     
                 </div>

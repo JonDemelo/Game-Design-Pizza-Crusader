@@ -46,11 +46,12 @@ game.initialize = function(){
 		},1000)
 	}
 
-	/* new game function */
-	pageLoadHandler(game.page['LOAD'],function(event){
+	$("#play-game").click(function(){
 		game.newGame();
 	})
 
+
+	
 	/* round start function */
 	pageLoadHandler(game.page['PRE'],function(event){
 		countDown(5,
@@ -63,13 +64,18 @@ game.initialize = function(){
 		)
 	})
 
+	$("#btn-deliver").click(function(){
+		currentPlayer.assignDelivery($("#in-deliver-region").val())
+	})
+
 	/* ongoing round function */
 	pageLoadHandler(game.page['ROUND'],function(event){
 		$("#round-current-round").text(game.currentRound);
 		countDown(5,
 			function(time){
 				$("#round-timer").text(time);	
-				$("#debug-info").text(JSON.stringify(gameBoard))
+				$("#debug-info").text(JSON.stringify(gameBoard,null,4))
+				console.log(gameBoard);
 			},
 			function(){
 				$.mobile.changePage(game.page['POST']);

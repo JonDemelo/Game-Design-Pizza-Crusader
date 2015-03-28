@@ -1,15 +1,15 @@
-var Player = function(id){
-	this.id = id;
+var Player = function(){
 	this.numResources = 0;
 	this.controlledRegions = [];
 	this.color = 'green';
 }
 
-Player.prototype.assignDelivery(regionId){
-	gameBoard.assignDeliveries(this.id,regionId,numResources);
+Player.prototype.assignDelivery = function(regionId){
+	gameBoard.assignDeliveries(this.id,regionId,1);
 }
 
 
-var currentPlayer = Player(0);
+var currentPlayer = new Player(0);
 
-gameBoard.player[currentPlayer.id] = currentPlayer;
+currentPlayer.id = gameBoard.players.length;
+gameBoard.players.push(currentPlayer);
