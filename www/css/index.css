@@ -118,6 +118,11 @@ h1 {
     line-height: 25px;
     height: 25px;
 }
+/*
+.ui-btn {
+    line-height: 1px;
+    height: 16px;
+}*/
 
 #splash-img {
     position: absolute;

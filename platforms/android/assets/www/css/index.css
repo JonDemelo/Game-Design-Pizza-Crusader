@@ -113,3 +113,20 @@ h1 {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
 }
+
+.ui-title {
+    line-height: 25px;
+    height: 25px;
+}
+
+#splash-img {
+    position: absolute;
+    top: 0; bottom:0; left: 0; right:0;
+    margin: auto;
+    max-height: 40%;
+}
+
+#page-splash-screen {
+    background-color: black;
+}
+
