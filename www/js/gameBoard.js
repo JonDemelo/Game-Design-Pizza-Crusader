@@ -15,6 +15,8 @@ var GameBoard = function(){
 	for(i = 0;i<10;i++){
 		this.regions.push(new Region(1))
 	}
+	this.currentRound = 1;
+	this.numberOfRounds = 5;
 }
 
 GameBoard.prototype.assignDeliveries = function(playerId,regionId, numDeliveries){
