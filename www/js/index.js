@@ -26,14 +26,30 @@ $(document).on("ready",function(){
     game.initialize();
 })
 
-
 var app = { // TODO: Any easier injection development strategies?
 
 
     // Application Constructor
     initialize: function() {
         log("initialize");
+        app.hideSplash();
+        // this.renderSplashView();
     },
+
+    hideSplash: function() {
+        log("test");
+        currentPage = $( ":mobile-pagecontainer").pagecontainer( "getActivePage" );
+        if(currentPage.context.URL.indexOf("#") === -1) { // stop splash outside of root
+            setTimeout(function () {
+                $(':mobile-pagecontainer').pagecontainer('change', '#page-main-menu', {
+                    transition: 'fade',
+                    changeHash: false,
+                    reverse: true,
+                });
+            }, 2000);
+        }
+    },
+
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:

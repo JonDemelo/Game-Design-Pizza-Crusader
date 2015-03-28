@@ -22,17 +22,65 @@ log = function (m) {
 }
 
 var app = {
-    renderHomeView: function() {
-        var html = "<h1>Test</h1>";
-        $('body').html(html);
-    },
+    // renderSplashView: function() {
+    //     log("render splash view");
+    //     var html = "<h1>Splash</h1>" +
+    //     "<button id='splashToMainMenuBtn'>Go to main menu</button>";
+    //     $('body').html(html);
+    // },
 
+    // renderMainMenuView: function() {
+    //     log("render main menu view");
+    //     var html = "<h1>Main Menu</h1>" +
+    //         "<div id='mainMenuBtns'><button id='mainMenuToPlayBtn'>Play Game</button>" + 
+    //         "<button id='mainMenuToHighScoresBtn'>High Scores</button>" + 
+    //         "<button id='mainMenuToStoreBtn'>Store</button>" +
+    //         "<button id='mainMenuToAboutBtn'>About</button><div>";
+    //     $('body').html(html);
+    // },
+
+    // renderPlayGameView: function() {
+    //     log("render play game view");
+    //     var html = "<h1>Play Game</h1>";
+    //     $('body').html(html);
+    // },
+
+    // renderHighScoresView: function() {
+    //     log("render high scores view");
+    //     var html = "<h1>High Scores</h1>";
+    //     $('body').html(html);
+    // },
+
+    // renderStoreView: function() {
+    //     log("render store view");
+    //     var html = "<h1>Store</h1>";
+    //     $('body').html(html);
+    // },
+
+    // renderAboutView: function() {
+    //     log("render about view");
+    //     var html = "<h1>About</h1>";
+    //     $('body').html(html);
+    // },
 
     // Application Constructor
     initialize: function() {
-        var self = this;
-        self.renderHomeView();
+        log("initialize");
+        app.hideSplash();
+        // this.renderSplashView();
     },
+
+    hideSplash: function() {
+        log("test");
+        setTimeout(function () {
+            $(':mobile-pagecontainer').pagecontainer('change', '#page-main-menu', {
+                transition: 'fade',
+                changeHash: false,
+                reverse: true,
+            });
+        }, 2000);
+    },
+
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
