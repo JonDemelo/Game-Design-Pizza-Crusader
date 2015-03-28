@@ -16,10 +16,22 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+log = function (m) {
+    console.log(m);
+}
+
 var app = {
+    renderHomeView: function() {
+        var html = "<h1>Test</h1>";
+        $('body').html(html);
+    },
+
+
     // Application Constructor
     initialize: function() {
-        this.bindEvents();
+        var self = this;
+        self.renderHomeView();
     },
     // Bind Event Listeners
     //
