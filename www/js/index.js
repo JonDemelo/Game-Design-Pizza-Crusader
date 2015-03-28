@@ -72,13 +72,16 @@ var app = {
 
     hideSplash: function() {
         log("test");
-        setTimeout(function () {
-            $(':mobile-pagecontainer').pagecontainer('change', '#page-main-menu', {
-                transition: 'fade',
-                changeHash: false,
-                reverse: true,
-            });
-        }, 2000);
+        currentPage = $( ":mobile-pagecontainer").pagecontainer( "getActivePage" );
+        if(currentPage.context.URL.indexOf("#") === -1) { // stop splash outside of root
+            setTimeout(function () {
+                $(':mobile-pagecontainer').pagecontainer('change', '#page-main-menu', {
+                    transition: 'fade',
+                    changeHash: false,
+                    reverse: true,
+                });
+            }, 2000);
+        }
     },
 
     // Bind Event Listeners

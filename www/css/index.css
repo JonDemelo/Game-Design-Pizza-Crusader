@@ -135,3 +135,15 @@ h1 {
     background-color: black;
 }
 
+.highscores-item {
+    width: 90%;
+ float: right;
+}
+
+.highscores-account {
+    float:left;
+}
+.highscores-points {
+    float:right;
+}
+
