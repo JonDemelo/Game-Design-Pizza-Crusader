@@ -135,8 +135,38 @@ h1 {
     background-color: black;
 }
 
+.store-item {
+/*    margin-left: auto;
+    margin-right: auto;*/
+}
+
+.store-item-image {
+    float: left;
+    width: 50%;
+}
+
+.store-item-text {
+    float:right;
+    width:50%;
+    line-height: 50px;
+}
+
+.store-item-name {
+ font-size: 20pt;
+ font-weight: bold;
+}
+
+.store-item-description {
+ font-size: 8pt;
+ word-wrap: break-word;
+}
+
+.store-item-cost {
+ font-size: 20pt;
+}
+
 .highscores-item {
-    width: 90%;
+width: 90%;
  float: right;
 }
 
