@@ -131,6 +131,20 @@ h1 {
     max-height: 40%;
 }
 
+#main-menu-image {
+    height: 50%;
+    width: 100%;
+}
+
+#main-img {
+    position: absolute;
+    top: 0; bottom:0; left: 0; right:0;
+    margin-top: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    /*margin: auto;*/
+}
+
 #page-splash-screen {
     background-color: black;
 }
