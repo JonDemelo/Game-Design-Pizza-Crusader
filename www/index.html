@@ -11,11 +11,8 @@
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
-
-        <script type="text/javascript" src="js/gameBoard.js"></script>
-        <script type="text/javascript" src="js/player.js"></script>
-        <script type="text/javascript" src="js/game.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/game.js"></script>
     </head>
     <body>
         <!-- Splash screen -->  
@@ -45,8 +42,21 @@
                 <a href="#page-store" class="ui-btn">Store</a>
                 <a href="#page-about" class="ui-btn">About</a>
                 <div id="main-menu-image">
-                <img id="main-img" src="img/medieval-pizza.png" alt="splash" />
+                    <img id="main-img" src="img/medieval-pizza.png" alt="splash" />
+                </div>
             </div>
+        </div>
+
+        <!-- Play game screen -->
+        <div data-role="page" id="page-play-game">
+            <title>Pizza Crusader</title>
+            <div data-role="header" data-position="fixed">
+                <a href="#page-main-menu" class="ui-btn ui-icon-back ui-btn-icon-left">Back</a>
+                <h1>Matchmaking</h1>
+            </div>
+
+            <div role="main" class="ui-content">
+                <p>Play game!</p>
             </div>
         </div>
 
@@ -165,19 +175,6 @@
         </div>
 
         <!-- various game screens -->
-        <!-- Play game screen -->
-        <div data-role="page" id="page-play-game">
-            <title>Pizza Crusader</title>
-            <div data-role="header" data-position="fixed">
-                <a href="#page-main-menu" class="ui-btn ui-icon-back ui-btn-icon-left">Back</a>
-                <h1>Matchmaking</h1>
-            </div>
-
-            <div role="main" class="ui-content">
-                <button id="play-game">Play game!</buton>
-            </div>
-        </div>
-
         <!-- Pre round -->
         <div data-role="page" id="page-game-pre-round">
             <div role="main" class="ui-content">
@@ -190,13 +187,6 @@
             <div role="main" class="ui-content">
                 <p>Actual round</p>
                 <div id="round-timer"></div>
-                <div id="round-current-round"></div>
-                <button id="pause">Pause</div>
-                <input type="text" placeholder="region id" id="in-deliver-region"/>
-                <button id="btn-deliver">Deliver</button>
-                <pre id="debug-info">
-                    
-                </div>
             </div>
         </div>
 
@@ -207,10 +197,9 @@
             </div>
         </div>
 
-        <div data-role="page" id="page-game-end">
+        <div data-role="page" id="page-game-post">
             <div role="main" class="ui-content">
                 <p>End Round</p>
-                <div id="post-round-timer"></div>
                 <a href="#page-main-menu" class="ui-btn">Go to main menu</a>
             </div>
         </div>
