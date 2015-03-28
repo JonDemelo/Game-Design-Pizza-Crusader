@@ -12,11 +12,11 @@
         <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/game.js"></script>
     </head>
     <body>
         <!-- Splash screen -->  
         <div data-role="page" id="page-splash-screen">
-            <title>Pizza Crusader</title>
             <div id="splash">
                 <img id="splash-img" src="img/splash-pizza-2.PNG" alt="splash" />
             </div>
@@ -32,7 +32,6 @@
 
         <!-- Main menu -->
         <div data-role="page" id="page-main-menu">
-            <title>Pizza Crusader</title>
             <div data-role="header">
                 <h1>Pizza Crusader</h1>
             </div>
@@ -62,7 +61,7 @@
         <div data-role="page" id="page-high-scores">
             <title>Pizza Crusader</title>
             <div data-role="header" data-position="fixed">
-                <a href="#page-main-menu" class="ui-btn ui-icon-back ui-btn-icon-left" data-rel="back">Back</a>
+                <a href="#page-main-menu" class="ui-btn ui-icon-back ui-btn-icon-left">Back</a>
                 <h1>High Scores</h1>
             </div>
 
@@ -94,12 +93,65 @@
         <div data-role="page" id="page-store">
             <title>Pizza Crusader</title>
             <div data-role="header" data-position="fixed">
-                <a href="#page-main-menu" class="ui-btn ui-icon-back ui-btn-icon-left" data-rel="back">Back</a>
+                <a href="#page-main-menu" class="ui-btn ui-icon-back ui-btn-icon-left">Back</a>
                 <h1>Store</h1>
             </div>
 
             <div role="main" class="ui-content">
-                <p>Store</p>
+                <ul data-role="listview">
+                    <li>
+                        <div class="store-item">
+                            <div class="store-item-image">
+                                <img class="store-img" src="img/store-red.png" alt="store-red" />
+                            </div>
+                            <div class="store-item-text">
+                                <div class="store-item-name">Red Skin</div>
+                                <div class="store-item-description">Play with a red franchise skin.</div>
+                                <div class="store-item-cost">10P</div>
+                            </div>
+                            <button class="store-purchase-button">Buy!</button>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="store-item">
+                            <div class="store-item-image">
+                                <img class="store-img" src="img/store-red.png" alt="store-red" />
+                            </div>
+                            <div class="store-item-text">
+                                <div class="store-item-name">Red Skin</div>
+                                <div class="store-item-description">Play with a red franchise skin.</div>
+                                <div class="store-item-cost">10P</div>
+                            </div>
+                            <button class="store-purchase-button">Buy!</button>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="store-item">
+                            <div class="store-item-image">
+                                <img class="store-img" src="img/store-red.png" alt="store-red" />
+                            </div>
+                            <div class="store-item-text">
+                                <div class="store-item-name">Red Skin</div>
+                                <div class="store-item-description">Play with a red franchise skin.</div>
+                                <div class="store-item-cost">10P</div>
+                            </div>
+                            <button class="store-purchase-button">Buy!</button>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="store-item">
+                            <div class="store-item-image">
+                                <img class="store-img" src="img/store-red.png" alt="store-red" />
+                            </div>
+                            <div class="store-item-text">
+                                <div class="store-item-name">Red Skin</div>
+                                <div class="store-item-description">Play with a red franchise skin.</div>
+                                <div class="store-item-cost">10P</div>
+                            </div>
+                            <button class="store-purchase-button">Buy!</button>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
 
@@ -116,6 +168,36 @@
                 <p>In a simpler time long ago, your family controlled the most successful pizza empire in all of Salem, the Pizza Crusader. Yet, as the years went by, a struggle for power emerged within the city as countless other pizza empires rushed to make their claim on the city’s regions. The battle for pizza and power raged on and slowly sent the Pizza Crusader empire into downfall and ruin, leaving Salem divided. Can you return the Pizza Crusader empire to its former glory and take back the lands it once ruled?</p>
                 <p>Pizza Crusader: A Slice of Power is an economic region-based single-player/multi-player strategy game which uses a simultaneous turn-based system which its essence from the region conquest style games which value tactical decisions through the use of a simplified turn-based economic system based upon the amount and power of a player’s held franchise regions.</p>
                 <p>Through their intuition and strategic might, players will be able to conquer opposing regions and defend those under their own control in a battle for pizza and power within the city’s regions so that they might become the supreme pizza empire of Salem. Complex and rewarding gameplay decisions allow for endless replayability and enjoyment, providing ample gaming experiences to a wide spectrum of gamer types. From casual game players looking for a few minutes of fun, to those whom want to be the very best franchise empire creators, Pizza Crusader has it all.</p>
+            </div>
+        </div>
+
+        <!-- various game screens -->
+        <!-- Pre round -->
+        <div data-role="page" id="page-game-pre-round">
+            <div role="main" class="ui-content">
+                <p>pre round</p>
+                <div id="pre-round-timer"></div>
+            </div>
+        </div>
+
+        <div data-role="page" id="page-game-round">
+            <div role="main" class="ui-content">
+                <p>Actual round</p>
+                <div id="round-timer"></div>
+            </div>
+        </div>
+
+        <div data-role="page" id="page-game-post">
+            <div role="main" class="ui-content">
+                <p>Post round</p>
+                <div id="post-round-timer"></div>
+            </div>
+        </div>
+
+        <div data-role="page" id="page-game-post">
+            <div role="main" class="ui-content">
+                <p>End Round</p>
+                <a href="#page-main-menu" class="ui-btn">Go to main menu</a>
             </div>
         </div>
     </body>
