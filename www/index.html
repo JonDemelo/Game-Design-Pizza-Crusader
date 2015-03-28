@@ -6,14 +6,90 @@
         <meta name="msapplication-tap-highlight" content="no" />
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
         <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
-        <title>Pizza Crusader</title>
-    </head>
-    <body>
-    </body>
-            <script type="text/javascript" src="cordova.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+    </head>
+    <body>
+        <!-- Splash screen -->  
+        <div data-role="page" id="page-splash-screen">
+            <title>Pizza Crusader</title>
+            <div data-role="header">
+                <h1>Pizza Crusader</h1>
+            </div>
+
+            <div role="main" class="ui-content">
+                <a href="#page-main-menu" class="ui-btn">Go to main menu</a>
+            </div>
+        </div>
+
+        <!-- Main menu -->
+        <div data-role="page" id="page-main-menu">
+            <title>Pizza Crusader</title>
+            <div data-role="header">
+                <h1>Pizza Crusader</h1>
+            </div>
+
+            <div role="main" class="ui-content">
+                <a href="#page-play-game" class="ui-btn">Play Game</a>
+                <a href="#page-high-scores" class="ui-btn">High scores</a>
+                <a href="#page-store" class="ui-btn">Store</a>
+                <a href="#page-about" class="ui-btn">About</a>
+            </div>
+        </div>
+
+        <!-- Play game screen -->
+        <div data-role="page" id="page-play-game">
+            <title>Pizza Crusader</title>
+            <div data-role="header">
+                <h1>Pizza Crusader</h1>
+            </div>
+
+            <div role="main" class="ui-content">
+                <p>Play game!</p>
+            </div>
+        </div>
+
+        <!--  High scores screen -->
+        <div data-role="page" id="page-high-scores">
+            <title>Pizza Crusader</title>
+            <div data-role="header">
+                <h1>Pizza Crusader</h1>
+            </div>
+
+            <div role="main" class="ui-content">
+                <p>High Scores</p>
+            </div>
+        </div>
+
+        <!--  Store screen -->
+        <div data-role="page" id="page-store">
+            <title>Pizza Crusader</title>
+            <div data-role="header">
+                <h1>Pizza Crusader</h1>
+            </div>
+
+            <div role="main" class="ui-content">
+                <p>Store</p>
+            </div>
+        </div>
+
+
+        <!--  Store screen -->
+        <div data-role="page" id="page-about">
+            <title>Pizza Crusader</title>
+            <div data-role="header">
+                <h1>Pizza Crusader</h1>
+            </div>
+
+            <div role="main" class="ui-content">
+                <p>About</p>
+            </div>
+        </div>
+
+
+    </body>
 </html>
