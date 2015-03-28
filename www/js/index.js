@@ -23,7 +23,13 @@ log = function (m) {
 
 $(document).on("ready",function(){
 
+    log(gameBoard);
     game.initialize();
+
+    $("#pause").click(function(){
+        game.paused = !game.paused;
+    })
+
 })
 
 var app = { // TODO: Any easier injection development strategies?
