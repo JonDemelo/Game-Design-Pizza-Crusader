@@ -118,9 +118,15 @@ h1 {
     line-height: 25px;
     height: 25px;
 }
-/*
-.ui-btn {
-    line-height: 1px;
-    height: 16px;
-}*/
+
+#splash-img {
+    position: absolute;
+    top: 0; bottom:0; left: 0; right:0;
+    margin: auto;
+    max-height: 40%;
+}
+
+#page-splash-screen {
+    background-color: black;
+}
 

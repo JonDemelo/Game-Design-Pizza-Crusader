@@ -21,7 +21,7 @@ log = function (m) {
     console.log(m);
 }
 
-var app = { // TODO: Any easier injection development strategies?
+var app = {
     // renderSplashView: function() {
     //     log("render splash view");
     //     var html = "<h1>Splash</h1>" +
@@ -63,36 +63,49 @@ var app = { // TODO: Any easier injection development strategies?
     //     $('body').html(html);
     // },
 
-    // // Application Constructor
-    // initialize: function() {
-    //     log("initialize");
-    //     this.renderSplashView();
-    // },
-    // // Bind Event Listeners
-    // //
-    // // Bind any events that are required on startup. Common events are:
-    // // 'load', 'deviceready', 'offline', and 'online'.
-    // bindEvents: function() {
-    //     document.addEventListener('deviceready', this.onDeviceReady, false);
-    // },
-    // // deviceready Event Handler
-    // //
-    // // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // // function, we must explicitly call 'app.receivedEvent(...);'
-    // onDeviceReady: function() {
-    //     app.receivedEvent('deviceready');
-    // },
-    // // Update DOM on a Received Event
-    // receivedEvent: function(id) {
-    //     var parentElement = document.getElementById(id);
-    //     var listeningElement = parentElement.querySelector('.listening');
-    //     var receivedElement = parentElement.querySelector('.received');
+    // Application Constructor
+    initialize: function() {
+        log("initialize");
+        app.hideSplash();
+        // this.renderSplashView();
+    },
 
-    //     listeningElement.setAttribute('style', 'display:none;');
-    //     receivedElement.setAttribute('style', 'display:block;');
+    hideSplash: function() {
+        log("test");
+        setTimeout(function () {
+            $(':mobile-pagecontainer').pagecontainer('change', '#page-main-menu', {
+                transition: 'fade',
+                changeHash: false,
+                reverse: true,
+            });
+        }, 2000);
+    },
 
-    //     console.log('Received Event: ' + id);
-    // }
+    // Bind Event Listeners
+    //
+    // Bind any events that are required on startup. Common events are:
+    // 'load', 'deviceready', 'offline', and 'online'.
+    bindEvents: function() {
+        document.addEventListener('deviceready', this.onDeviceReady, false);
+    },
+    // deviceready Event Handler
+    //
+    // The scope of 'this' is the event. In order to call the 'receivedEvent'
+    // function, we must explicitly call 'app.receivedEvent(...);'
+    onDeviceReady: function() {
+        app.receivedEvent('deviceready');
+    },
+    // Update DOM on a Received Event
+    receivedEvent: function(id) {
+        var parentElement = document.getElementById(id);
+        var listeningElement = parentElement.querySelector('.listening');
+        var receivedElement = parentElement.querySelector('.received');
+
+        listeningElement.setAttribute('style', 'display:none;');
+        receivedElement.setAttribute('style', 'display:block;');
+
+        console.log('Received Event: ' + id);
+    }
 };
 
-// app.initialize();
+app.initialize();
