@@ -131,23 +131,26 @@ h1 {
     max-height: 40%;
 }
 
-#main-menu-image {
-    height: 50%;
-    width: 100%;
-}
-
-#main-img {
-    position: absolute;
-    top: 0; bottom:0; left: 0; right:0;
-    margin-top: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    /*margin: auto;*/
-}
-
 #page-splash-screen {
     background-color: black;
 }
+
+#main-menu-image {
+}
+
+#main-img {
+position: fixed;
+    /* center the div */
+    right: 0;
+    left: 0;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 30px;
+    /* give it dimensions */
+    height: 200px;
+    width: 200px;
+}
+
 
 .store-img {
 /*    margin-left: auto;
