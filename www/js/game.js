@@ -8,12 +8,13 @@ game.page = {
 	'END': '#page-game-end'
 }
 
-game.currentState = 'PRE'
-
 game.isInitialized = false;
+game.currentRound = 0;
+
 game.newGame = function(){
 	game.currentState = 'PRE';
 	$.mobile.changePage(game.page['PRE']);
+	game.currentRound = 1;
 };
 
 game.initialize = function(){
@@ -22,7 +23,6 @@ game.initialize = function(){
 	}
 	game.isInitialized = true;
 	function pageLoadHandler(id,callback){
-		log("loaded "+id)
 		$(document).on("pageshow",id,callback);
 	}
 
@@ -59,11 +59,10 @@ game.initialize = function(){
 
 	/* ongoing round function */
 	pageLoadHandler(game.page['ROUND'],function(event){
-		console.log("round listener started");
-		countDown(15,
+		$("#round-current-round").text(game.currentRound);
+		countDown(5,
 			function(time){
 				$("#round-timer").text(time);	
-				log(time);	
 			},
 			function(){
 				$.mobile.changePage(game.page['POST']);
@@ -76,11 +75,16 @@ game.initialize = function(){
 	pageLoadHandler(game.page['POST'],function(event){
 		countDown(15,
 			function(time){
-				$("#round-timer").text(time);		
+				$("#post-round-timer").text(time);		
 			},
 			function(){
+				game.currentRound++;
 				//TODO: check if any winners
-				$.mobile.changePage(game.page['END']);
+				if ( game.currentRound == 3){
+					$.mobile.changePage(game.page['END']);
+				}else{
+					$.mobile.changePage(game.page['PRE']);
+				}
 			}
 		)
 	})

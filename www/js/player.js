@@ -4,3 +4,5 @@ var Player = function(id){
 	this.controlledRegions = [];
 	this.color = 'black';
 }
+
+var currentPlayer = Player(0);
