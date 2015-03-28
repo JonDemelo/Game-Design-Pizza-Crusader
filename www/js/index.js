@@ -21,13 +21,9 @@ log = function (m) {
     console.log(m);
 }
 
-$(document).on("mobileinit",function(){
-    log("jquery mobile initialized.");
+$(document).on("ready",function(){
 
-    $( ":mobile-pagecontainer" ).on( "pagecontainershow", function( event, ui ) {
-        log(event);
-        log(ui);
-    });
+    game.initialize();
 })
 
 
