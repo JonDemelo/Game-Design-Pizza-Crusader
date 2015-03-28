@@ -1,11 +1,15 @@
 var Player = function(){
-	this.numResources = 0;
+	this.numResources = 4;
 	this.controlledRegions = [];
 	this.color = 'green';
 }
 
 Player.prototype.assignDelivery = function(regionId){
-	gameBoard.assignDeliveries(this.id,regionId,1);
+	if ( this.numResources > 0){
+		gameBoard.assignDeliveries(this.id,regionId,1);
+	}else{
+		alert("you don't have enough resources");
+	}
 }
 
 

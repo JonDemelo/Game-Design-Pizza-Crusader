@@ -25,6 +25,7 @@ GameBoard.prototype.assignDeliveries = function(playerId,regionId, numDeliveries
 
 GameBoard.prototype.endRound = function(){
 	//update which region belongs to which player
+	var self = this;
 	this.regions.forEach(function(region){
 		var owner = null;
 		var ownerDeliveries = 0;
@@ -34,14 +35,17 @@ GameBoard.prototype.endRound = function(){
 			}
 		})
 
+		if ( owner == null){
+			return;
+		}
 		region.incomingDeliveries = [];
-		
+
 		if ( region.playerId != null ){
-			this.players[playerId].numResources -= region.generator;
+			self.players[region.playerId].numResources -= region.generator;
 		}
 		region.playerId = owner;
 
-		this.players[playerId].numResources += region.generator;
+		self.players[region.playerId].numResources += region.generator;
 	})
 
 

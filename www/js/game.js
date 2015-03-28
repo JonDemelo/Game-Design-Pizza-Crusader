@@ -86,6 +86,7 @@ game.initialize = function(){
 	/* end of round function */
 	pageLoadHandler(game.page['POST'],function(event){
 		gameBoard.endRound();
+		//make bot do something here
 		countDown(5,
 			function(time){
 				$("#post-round-timer").text(time);		
