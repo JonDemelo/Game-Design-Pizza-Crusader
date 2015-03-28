@@ -27,22 +27,23 @@ $(document).ready(function() { // TODO: Write dynamic button handler.
         app.renderMainMenuView();
     });
 
-    $("#mainMenuToPlayBtn").click(function(){
+    // $("#mainMenuBtns").on("click", "#mainMenuToPlayBtn",
+    $("#mainMenuBtns").on("click", "#mainMenuToPlayBtn", function(){
         log("main menu to play button clicked");
         app.renderPlayGameView();
     });
 
-    $("#mainMenuToHighScoresBtn").click(function(){
+   $("#mainMenuBtns").on("click", "#mainMenuToHighScoresBtn", function(){
         log("main menu to high scores button clicked");
         app.renderHighScoresView();
     });
 
-    $("#mainMenuToStoreBtn").click(function(){
+   $("#mainMenuBtns").on("click", "#mainMenuToStoreBtn", function(){
         log("main menu to store button clicked");
         app.renderStoreView();
     });
 
-    $("#mainMenuToAboutBtn").click(function(){
+   $("#mainMenuBtns").on("click", "#mainMenuToAboutBtn", function(){
         log("main menu to about button clicked");
         app.renderAboutView();
     });
@@ -59,10 +60,10 @@ var app = { // TODO: Any easier injection development strategies?
     renderMainMenuView: function() {
         log("render main menu view");
         var html = "<h1>Main Menu</h1>" +
-            "<button id='mainMenuToPlayBtn'>Play Game</button>" + 
+            "<div id='mainMenuBtns'><button id='mainMenuToPlayBtn'>Play Game</button>" + 
             "<button id='mainMenuToHighScoresBtn'>High Scores</button>" + 
             "<button id='mainMenuToStoreBtn'>Store</button>" +
-            "<button id='mainMenuToAboutBtn'>About</button>";
+            "<button id='mainMenuToAboutBtn'>About</button><div>";
         $('body').html(html);
     },
 
