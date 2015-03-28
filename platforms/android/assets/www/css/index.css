@@ -118,6 +118,11 @@ h1 {
     line-height: 25px;
     height: 25px;
 }
+/*
+.ui-btn {
+    line-height: 1px;
+    height: 16px;
+}*/
 
 #splash-img {
     position: absolute;
@@ -128,5 +133,17 @@ h1 {
 
 #page-splash-screen {
     background-color: black;
+}
+
+.highscores-item {
+    width: 90%;
+ float: right;
+}
+
+.highscores-account {
+    float:left;
+}
+.highscores-points {
+    float:right;
 }
 
