@@ -1,7 +1,7 @@
-var Player = function(){
+var Player = function(color){
 	this.numResources = 4;
 	this.controlledRegions = [];
-	this.color = 'green';
+	this.color = color;
 }
 
 Player.prototype.assignDelivery = function(regionId){
@@ -13,10 +13,12 @@ Player.prototype.assignDelivery = function(regionId){
 }
 
 
-var botPlayer = new Player();
-var currentPlayer = new Player();
+var botPlayer = new Player('red');
+var currentPlayer = new Player('blue');
 
-
-gameBoard.players.push(botPlayer);
-currentPlayer.id = gameBoard.players.length;
-gameBoard.players.push(currentPlayer);
+function initializePlayers(){
+	botPlayer.id = gameBoard.players.length;
+	gameBoard.players.push(botPlayer);
+	currentPlayer.id = gameBoard.players.length;
+	gameBoard.players.push(currentPlayer);
+}

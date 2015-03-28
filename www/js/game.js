@@ -15,6 +15,8 @@ game.newGame = function(){
 	game.currentState = 'PRE';
 	$.mobile.changePage(game.page['PRE']);
 	game.currentRound = 1;
+	gameBoard = new GameBoard();
+	initializePlayers();
 };
 
 /* debug variable */
@@ -82,11 +84,25 @@ game.initialize = function(){
 		)
 	})
 
+	/**
+	 * Returns a random integer between min (inclusive) and max (inclusive)
+	 * Using Math.round() will give you a non-uniform distribution!
+	 */
+	function getRandomInt(min, max) {
+	    return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
 
 	/* end of round function */
 	pageLoadHandler(game.page['POST'],function(event){
+		var region = getRandomInt(0,gameBoard.regions.length-1);
+		console.log(region)
+
+		botPlayer.assignDelivery(region,1);
+
 		gameBoard.endRound();
 		//make bot do something here
+		
+		console.log(gameBoard);
 		countDown(5,
 			function(time){
 				$("#post-round-timer").text(time);		
@@ -94,7 +110,7 @@ game.initialize = function(){
 			function(){
 				game.currentRound++;
 				//TODO: check if any winners
-				if ( game.currentRound == 3){
+				if ( game.currentRound >= 3 ){
 					$.mobile.changePage(game.page['END']);
 				}else{
 					$.mobile.changePage(game.page['PRE']);
