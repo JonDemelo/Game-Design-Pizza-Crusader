@@ -118,7 +118,10 @@ game.initialize = function(){
 	})
 
 	pageLoadHandler(game.page['END'],function(event){
-		console.log(gameBoard.getWinner())
+
+		var winner =gameBoard.getWinner();
+		$("#winner").text(winner); 
+
 	})
 
 };
