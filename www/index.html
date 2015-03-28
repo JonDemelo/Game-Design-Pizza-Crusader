@@ -33,11 +33,11 @@
         <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
         
         <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/game.js"></script>
     </head>
     <body>
         <!-- Splash screen -->  
         <div data-role="page" id="page-splash-screen">
-            <title>Pizza Crusader</title>
             <div data-role="header">
                 <h1>Pizza Crusader</h1>
             </div>
@@ -49,7 +49,6 @@
 
         <!-- Main menu -->
         <div data-role="page" id="page-main-menu">
-            <title>Pizza Crusader</title>
             <div data-role="header">
                 <h1>Pizza Crusader</h1>
             </div>
@@ -64,7 +63,6 @@
 
         <!-- Play game screen -->
         <div data-role="page" id="page-play-game">
-            <title>Pizza Crusader</title>
             <div data-role="header">
                 <h1>Pizza Crusader</h1>
             </div>
@@ -76,7 +74,6 @@
 
         <!--  High scores screen -->
         <div data-role="page" id="page-high-scores">
-            <title>Pizza Crusader</title>
             <div data-role="header">
                 <h1>Pizza Crusader</h1>
             </div>
@@ -88,7 +85,6 @@
 
         <!--  Store screen -->
         <div data-role="page" id="page-store">
-            <title>Pizza Crusader</title>
             <div data-role="header">
                 <h1>Pizza Crusader</h1>
             </div>
@@ -101,13 +97,22 @@
 
         <!--  About screen -->
         <div data-role="page" id="page-about">
-            <title>Pizza Crusader</title>
             <div data-role="header">
                 <h1>Pizza Crusader</h1>
             </div>
 
             <div role="main" class="ui-content">
                 <p>About</p>
+            </div>
+        </div>
+
+
+        <!-- various game screens -->
+        <!-- Pre round -->
+        <div data-role="page" id="page-game-pre-round">
+            <div role="main" class="ui-content">
+                <p>pre round</p>
+                <div id="pre-round-timer"></div>
             </div>
         </div>
 
