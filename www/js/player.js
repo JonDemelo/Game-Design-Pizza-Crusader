@@ -9,7 +9,10 @@ Player.prototype.assignDelivery = function(regionId){
 }
 
 
-var currentPlayer = new Player(0);
+var botPlayer = new Player();
+var currentPlayer = new Player();
 
+
+gameBoard.players.push(botPlayer);
 currentPlayer.id = gameBoard.players.length;
 gameBoard.players.push(currentPlayer);

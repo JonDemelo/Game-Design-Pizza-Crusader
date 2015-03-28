@@ -75,7 +75,6 @@ game.initialize = function(){
 			function(time){
 				$("#round-timer").text(time);	
 				$("#debug-info").text(JSON.stringify(gameBoard,null,4))
-				console.log(gameBoard);
 			},
 			function(){
 				$.mobile.changePage(game.page['POST']);
@@ -86,6 +85,7 @@ game.initialize = function(){
 
 	/* end of round function */
 	pageLoadHandler(game.page['POST'],function(event){
+		gameBoard.endRound();
 		countDown(5,
 			function(time){
 				$("#post-round-timer").text(time);		
