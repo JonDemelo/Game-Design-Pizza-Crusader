@@ -17,6 +17,9 @@ game.newGame = function(){
 	game.currentRound = 1;
 };
 
+/* debug variable */
+game.paused = false;
+
 game.initialize = function(){
 	if ( game.isInitialized ){
 		return;
@@ -30,11 +33,15 @@ game.initialize = function(){
 		var timeRemaining = startTime;
 		var interval = setInterval(function(){
 			callback(timeRemaining);
-			timeRemaining--;
-			if ( timeRemaining < 0){
-				clearInterval(interval);
-				endCallback();
+
+			if( !game.paused ){
+				timeRemaining--;
+				if ( timeRemaining < 0){
+					clearInterval(interval);
+					endCallback();
+				}
 			}
+
 
 		},1000)
 	}
@@ -49,7 +56,6 @@ game.initialize = function(){
 		countDown(5,
 			function(time){
 				$("#pre-round-timer").text(time);	
-				console.log(time);	
 			},
 			function(){
 				$.mobile.changePage(game.page['ROUND']);
@@ -63,6 +69,7 @@ game.initialize = function(){
 		countDown(5,
 			function(time){
 				$("#round-timer").text(time);	
+				$("#debug-info").text(JSON.stringify(gameBoard))
 			},
 			function(){
 				$.mobile.changePage(game.page['POST']);
@@ -73,7 +80,7 @@ game.initialize = function(){
 
 	/* end of round function */
 	pageLoadHandler(game.page['POST'],function(event){
-		countDown(15,
+		countDown(5,
 			function(time){
 				$("#post-round-timer").text(time);		
 			},
