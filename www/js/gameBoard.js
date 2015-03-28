@@ -6,6 +6,7 @@
 var Region = function(generator){
 	this.generator = typeof generator !== 'undefined'? generator : 0;
 	this.incomingDeliveries = [];
+	this.playerId = null;
 }
 
 var GameBoard = function(){
@@ -33,9 +34,14 @@ GameBoard.prototype.endRound = function(){
 			}
 		})
 
-		region.playerId = owner;
 		region.incomingDeliveries = [];
-		this.players[playerId].numResources = region.generator;
+		
+		if ( region.playerId != null ){
+			this.players[playerId].numResources -= region.generator;
+		}
+		region.playerId = owner;
+
+		this.players[playerId].numResources += region.generator;
 	})
 
 
