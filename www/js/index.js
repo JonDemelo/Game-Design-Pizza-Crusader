@@ -21,106 +21,78 @@ log = function (m) {
     console.log(m);
 }
 
-$(document).ready(function() { // TODO: Write dynamic button handler.
-    $("#splashToMainMenuBtn").click(function(){
-        log("splash menu to main menu button clicked");
-        app.renderMainMenuView();
-    });
-
-    // $("#mainMenuBtns").on("click", "#mainMenuToPlayBtn",
-    $("#mainMenuBtns").on("click", "#mainMenuToPlayBtn", function(){
-        log("main menu to play button clicked");
-        app.renderPlayGameView();
-    });
-
-   $("#mainMenuBtns").on("click", "#mainMenuToHighScoresBtn", function(){
-        log("main menu to high scores button clicked");
-        app.renderHighScoresView();
-    });
-
-   $("#mainMenuBtns").on("click", "#mainMenuToStoreBtn", function(){
-        log("main menu to store button clicked");
-        app.renderStoreView();
-    });
-
-   $("#mainMenuBtns").on("click", "#mainMenuToAboutBtn", function(){
-        log("main menu to about button clicked");
-        app.renderAboutView();
-    });
-});
-
 var app = { // TODO: Any easier injection development strategies?
-    renderSplashView: function() {
-        log("render splash view");
-        var html = "<h1>Splash</h1>" +
-        "<button id='splashToMainMenuBtn'>Go to main menu</button>";
-        $('body').html(html);
-    },
+    // renderSplashView: function() {
+    //     log("render splash view");
+    //     var html = "<h1>Splash</h1>" +
+    //     "<button id='splashToMainMenuBtn'>Go to main menu</button>";
+    //     $('body').html(html);
+    // },
 
-    renderMainMenuView: function() {
-        log("render main menu view");
-        var html = "<h1>Main Menu</h1>" +
-            "<div id='mainMenuBtns'><button id='mainMenuToPlayBtn'>Play Game</button>" + 
-            "<button id='mainMenuToHighScoresBtn'>High Scores</button>" + 
-            "<button id='mainMenuToStoreBtn'>Store</button>" +
-            "<button id='mainMenuToAboutBtn'>About</button><div>";
-        $('body').html(html);
-    },
+    // renderMainMenuView: function() {
+    //     log("render main menu view");
+    //     var html = "<h1>Main Menu</h1>" +
+    //         "<div id='mainMenuBtns'><button id='mainMenuToPlayBtn'>Play Game</button>" + 
+    //         "<button id='mainMenuToHighScoresBtn'>High Scores</button>" + 
+    //         "<button id='mainMenuToStoreBtn'>Store</button>" +
+    //         "<button id='mainMenuToAboutBtn'>About</button><div>";
+    //     $('body').html(html);
+    // },
 
-    renderPlayGameView: function() {
-        log("render play game view");
-        var html = "<h1>Play Game</h1>";
-        $('body').html(html);
-    },
+    // renderPlayGameView: function() {
+    //     log("render play game view");
+    //     var html = "<h1>Play Game</h1>";
+    //     $('body').html(html);
+    // },
 
-    renderHighScoresView: function() {
-        log("render high scores view");
-        var html = "<h1>High Scores</h1>";
-        $('body').html(html);
-    },
+    // renderHighScoresView: function() {
+    //     log("render high scores view");
+    //     var html = "<h1>High Scores</h1>";
+    //     $('body').html(html);
+    // },
 
-    renderStoreView: function() {
-        log("render store view");
-        var html = "<h1>Store</h1>";
-        $('body').html(html);
-    },
+    // renderStoreView: function() {
+    //     log("render store view");
+    //     var html = "<h1>Store</h1>";
+    //     $('body').html(html);
+    // },
 
-    renderAboutView: function() {
-        log("render about view");
-        var html = "<h1>About</h1>";
-        $('body').html(html);
-    },
+    // renderAboutView: function() {
+    //     log("render about view");
+    //     var html = "<h1>About</h1>";
+    //     $('body').html(html);
+    // },
 
-    // Application Constructor
-    initialize: function() {
-        log("initialize");
-        this.renderSplashView();
-    },
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-    },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
-        app.receivedEvent('deviceready');
-    },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+    // // Application Constructor
+    // initialize: function() {
+    //     log("initialize");
+    //     this.renderSplashView();
+    // },
+    // // Bind Event Listeners
+    // //
+    // // Bind any events that are required on startup. Common events are:
+    // // 'load', 'deviceready', 'offline', and 'online'.
+    // bindEvents: function() {
+    //     document.addEventListener('deviceready', this.onDeviceReady, false);
+    // },
+    // // deviceready Event Handler
+    // //
+    // // The scope of 'this' is the event. In order to call the 'receivedEvent'
+    // // function, we must explicitly call 'app.receivedEvent(...);'
+    // onDeviceReady: function() {
+    //     app.receivedEvent('deviceready');
+    // },
+    // // Update DOM on a Received Event
+    // receivedEvent: function(id) {
+    //     var parentElement = document.getElementById(id);
+    //     var listeningElement = parentElement.querySelector('.listening');
+    //     var receivedElement = parentElement.querySelector('.received');
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+    //     listeningElement.setAttribute('style', 'display:none;');
+    //     receivedElement.setAttribute('style', 'display:block;');
 
-        console.log('Received Event: ' + id);
-    }
+    //     console.log('Received Event: ' + id);
+    // }
 };
 
-app.initialize();
+// app.initialize();

@@ -113,3 +113,14 @@ h1 {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
 }
+
+.ui-title {
+    line-height: 25px;
+    height: 25px;
+}
+/*
+.ui-btn {
+    line-height: 1px;
+    height: 16px;
+}*/
+
