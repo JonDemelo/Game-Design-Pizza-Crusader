@@ -1,7 +1,7 @@
 // Where the game visuals will be initialized.
 
-	var width = 960,
-	    height = 500;
+	var width = 800,
+	    height = 800;
 
 	var vertices;
 

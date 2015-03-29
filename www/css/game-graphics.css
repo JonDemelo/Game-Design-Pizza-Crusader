@@ -1,4 +1,6 @@
 
+
+
 path {
   stroke: #fff;
 }
@@ -28,4 +30,7 @@ circle {
 }
 .unfaded {
 	opacity: 0.8;
+}
+
+#voronoiContainer {
 }
