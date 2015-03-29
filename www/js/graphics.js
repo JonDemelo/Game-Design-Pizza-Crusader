@@ -29,8 +29,8 @@ initializeGraphics = function(seed) {
 
   voronoi = d3.geom.voronoi()
       .clipExtent([[0, 0], [width, height]])
-      .x(function(d){return d.x})
-      .y(function(d){return d.y})
+      .x(function(d){return d.x*width})
+      .y(function(d){return d.y*height})
 
   svg = d3.select("#voronoiContainer").append("svg")
       .attr("width", width)

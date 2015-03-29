@@ -48,8 +48,8 @@ div.tooltip {
 z-index : 1;
     position: absolute;     /* reference for measurement */
     text-align: left;
-    pointer-events: none;     /* 'none' tells the mouse to ignore the rectangle */
     background: #FFFFEF;
+    
 /*    width: 400px;
     height: 165px;*/
     padding: 10px;
