@@ -1,0 +1,31 @@
+
+path {
+  stroke: #fff;
+}
+
+path:first-child {
+  fill: yellow !important;
+}
+
+circle {
+  fill: #000;
+  pointer-events: none;
+}
+
+.q0-9 { fill: #AA3939; }
+.q1-9 { fill: #AA6C39; }
+.q2-9 { fill: #2D882D; }
+.q3-9 { fill: #226666; }
+.q4-9 { fill: #74276D; }
+.q5-9 { fill: #294F6D; }
+.q6-9 { fill: #AA4439; }
+.q7-9 { fill: #AA9B39; }
+.q8-9 { fill: #983352; }
+
+
+.faded {
+	opacity: 0.5;
+}
+.unfaded {
+	opacity: 0.8;
+}

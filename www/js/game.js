@@ -55,14 +55,15 @@ game.initialize = function(){
 	
 	/* round start function */
 	pageLoadHandler(game.page['PRE'],function(event){
-		countDown(5,
-			function(time){
-				$("#pre-round-timer").text(time);	
-			},
-			function(){
-				$.mobile.changePage(game.page['ROUND']);
-			}
-		)
+		initializeGraphics();
+		// countDown(5,
+		// 	function(time){
+		// 		$("#pre-round-timer").text(time);	
+		// 	},
+		// 	function(){
+		// 		$.mobile.changePage(game.page['ROUND']);
+		// 	}
+		// )
 	})
 
 	$("#btn-deliver").click(function(){
@@ -71,6 +72,7 @@ game.initialize = function(){
 
 	/* ongoing round function */
 	pageLoadHandler(game.page['ROUND'],function(event){
+		initializeGraphics();
 		$("#round-current-round").text(gameBoard.currentRound);
 		countDown(5,
 			function(time){
