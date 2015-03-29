@@ -62,6 +62,7 @@ game.initialize = function(){
 				updateTimer("PRE", time);	
 			},
 			function(){
+				cleanup("PRE");
 				$.mobile.changePage(game.page['ROUND']);
 			}
 		)
@@ -82,6 +83,7 @@ game.initialize = function(){
 				// $("#debug-info").text(JSON.stringify(gameBoard,null,4))
 			},
 			function(){
+				cleanup("ROUND");
 				$.mobile.changePage(game.page['POST']);
 			}
 		)
@@ -114,6 +116,7 @@ game.initialize = function(){
 			},
 			function(){
 				//TODO: check if any winners
+				cleanup("POST");
 				if ( gameBoard.isGameOver() ){
 					$.mobile.changePage(game.page['END']);
 				}else{

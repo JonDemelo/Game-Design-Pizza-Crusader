@@ -11,23 +11,32 @@ var width,
     timer;
 
 function polygon(d) {
-  if ( typeof d === 'undefined'){
-    d = [];
-  }
-  return "M" + d.join("L") + "Z";
+    if (typeof d === 'undefined') {
+        d = [];
+    }
+    return "M" + d.join("L") + "Z";
 }
 
 update = function(state, isSummaryDisplayed) {
-    log("graphics initialized");
-    if(state === "PRE") {
-      container = "#voronoiContainer-pre";
-    } else if (state === "ROUND") {
-      container = "#voronoiContainer-round";
-    } else if (state === "POST") {
-      container = "#voronoiContainer-post";
-    } else if (state === "END") {
-      container = "#voronoiContainer-end";
+    log("updateGraphics --- " + "isSummaryDisplayed: " + isSummaryDisplayed);
+
+    noZone = false; // if there's a situation where the user is deselecting a zone
+    divOpen = false; // there's a popup open already.
+    summaryOpened = false;
+    if (isSummaryDisplayed) {
+        summaryOpened = true;
     }
+
+    if (state === "PRE") {
+        container = "#voronoiContainer-pre";
+    } else if (state === "ROUND") {
+        container = "#voronoiContainer-round";
+    } else if (state === "POST") {
+        container = "#voronoiContainer-post";
+    } else if (state === "END") {
+        container = "#voronoiContainer-end";
+    }
+    log("container:" + container);
 
     width = $(document).width();
     height = $(document).height();
@@ -39,15 +48,18 @@ update = function(state, isSummaryDisplayed) {
             [0, 0],
             [width, height]
         ])
-        .x(function(d){return d.x*width})
-        .y(function(d){return d.y*height});
+        .x(function(d) {
+            return d.x * width
+        })
+        .y(function(d) {
+            return d.y * height
+        });
 
     svg = d3.select(container).append("svg")
         .attr("width", width)
         .attr("height", height);
 
     path = svg.append("g").selectAll("path");
-
     popup = d3.select(container).append("div")
         .classed("tooltip", true)
         .classed(state, true)
@@ -58,13 +70,6 @@ update = function(state, isSummaryDisplayed) {
         .classed(state, true)
         .style("opacity", 1);
 
-    log("updateGraphics --- " + "isSummaryDisplayed: " + isSummaryDisplayed);
-    noZone = false; // if there's a situation where the user is deselecting a zone
-    divOpen = false; // there's a popup open already.
-    summaryOpened = false;
-    if (isSummaryDisplayed) {
-    	summaryOpened = true;
-    }
 
     path = path.data(voronoi(vertices), polygon);
 
@@ -83,7 +88,7 @@ update = function(state, isSummaryDisplayed) {
         .on("click", function(d) {
             // every zone is unfaded
             if (!divOpen && !isSummaryDisplayed) { // if there's a pop up open, 
-            	//you can't click a zone
+                //you can't click a zone
                 if (d3.selectAll(".unfaded")[0].length > 1) {
                     d3.selectAll('.unfaded').classed("faded", true);
                     d3.selectAll('.unfaded').classed("unfaded", false);
@@ -103,77 +108,76 @@ update = function(state, isSummaryDisplayed) {
                     }
                 }
             } else { // close popup instead of clicking new zone.
-            	if(summaryOpened) {
-            		summaryOpened = false;
-            	}
+                if (summaryOpened) {
+                    summaryOpened = false;
+                }
                 popup.transition().duration(200)
                     .style("pointer-events", "none")
                     .style("opacity", 0);
             }
 
             if (!noZone && !divOpen) {
-                  divOpen = true;
-                  popup.selectAll("*").remove();
+                divOpen = true;
+                popup.selectAll("*").remove();
 
-			      popup.transition().duration(200)
-			            .style("pointer-events", "all")
-			            .style("opacity", .9);
+                popup.transition().duration(200)
+                    .style("pointer-events", "all")
+                    .style("opacity", .9);
 
-			        popup.style("left", width * 0.1 + "px")
-			            .style("top", height * 0.2 + "px")
-			            .style("width", width * 0.75 + "px")
-			            .style("height", height * 0.6 + "px");
+                popup.style("left", width * 0.1 + "px")
+                    .style("top", height * 0.2 + "px")
+                    .style("width", width * 0.75 + "px")
+                    .style("height", height * 0.6 + "px");
 
-			        popup.append("div")
-			            .attr("class", "summary-header")
-			            .text("ZONE");
+                popup.append("div")
+                    .attr("class", "summary-header")
+                    .text("ZONE");
 
-			        popup.append("div")
-			            .attr("class", "summary-contents")
-			            .text(function (d) {
-			            	return "ZONE CONTENTS FILL THIS"
-			            	+ "WITH STUFF FROM ZONE STATE AND MAKE IT LOOK NICE"; 
-			            });
+                popup.append("div")
+                    .attr("class", "summary-contents")
+                    .text(function(d) {
+                        return "ZONE CONTENTS FILL THIS" + "WITH STUFF FROM ZONE STATE AND MAKE IT LOOK NICE";
+                    });
 
-			        var zoneButtons = popup.append("div")
-			        	.attr("class", "zone-buttons");
+                var zoneButtons = popup.append("div")
+                    .attr("class", "zone-buttons");
 
-			        zoneButtons.append("button")
-			        	.attr("class", "zone-button-deliver")
-			        	.attr("disabled", function(d) { // TODO: Issue
-			        		// should be undisabled when 
-			        		// isSummaryDisplayed = false
-			        		// but it's not
-			        		return isSummaryDisplayed;
-			        	})
-			            .on("click", function(d) {	
-			            	log("test");
-			            	// TODO add delivery
-			            })
-			            .text("+1");
+                zoneButtons.append("button")
+                    .attr("class", "zone-button-deliver")
+                    .attr("disabled", function(d) { // TODO: Issue
+                        // should be undisabled when 
+                        // isSummaryDisplayed = false
+                        // but it's not
+                        return isSummaryDisplayed;
+                    })
+                    .on("click", function(d) {
+                        log("test");
+                        // TODO add delivery
+                    })
+                    .text("+1");
 
-			        zoneButtons.append("button")
-			        	.attr("class", "zone-button-undeliver")
-			        	.attr("disabled", function(d) {
+                zoneButtons.append("button")
+                    .attr("class", "zone-button-undeliver")
+                    .attr("disabled", function(d) {
 
-			        		// TODO same here
-			        		return isSummaryDisplayed;
-			        	})
-			            .on("click", function(d) {	
-			            	// TODO remove delivery
-			            })
-			            .text("-1");
+                        // TODO same here
+                        return isSummaryDisplayed;
+                    })
+                    .on("click", function(d) {
+                        // TODO remove delivery
+                    })
+                    .text("-1");
 
-			        popup.append("button")
-			        	.attr("class", "summary-button")
-			            .on("click", function(d) {
-			                popup.transition().duration(200)
-			                    .style("pointer-events", "none")
-			                    .style("opacity", 0);
-			                divOpen = false;
-			                summaryOpened = false;
-			            })
-			            .text("CLOSE");
+                popup.append("button")
+                    .attr("class", "summary-button")
+                    .on("click", function(d) {
+                        popup.transition().duration(200)
+                            .style("pointer-events", "none")
+                            .style("opacity", 0);
+                        divOpen = false;
+                        summaryOpened = false;
+                    })
+                    .text("CLOSE");
 
             } else {
                 divOpen = false;
@@ -206,13 +210,12 @@ update = function(state, isSummaryDisplayed) {
 
         popup.append("div")
             .attr("class", "summary-contents")
-            .text(function (d) {
-            	return "SUMMARY CONTENTS FILL THIS"
-            	+ "WITH STUFF FROM GAME STATE AND MAKE IT LOOK NICE"; 
+            .text(function(d) {
+                return "SUMMARY CONTENTS FILL THIS" + "WITH STUFF FROM GAME STATE AND MAKE IT LOOK NICE";
             });
 
         popup.append("button")
-        	.attr("class", "summary-button")
+            .attr("class", "summary-button")
             .on("click", function(d) {
                 popup.transition().duration(200)
                     .style("pointer-events", "none")
@@ -227,4 +230,18 @@ update = function(state, isSummaryDisplayed) {
 
 updateTimer = function(state, timerValue) {
     d3.selectAll(".timer").filter("." + state).text(timerValue);
+}
+
+cleanup = function(state) {
+    if (state === "PRE") {
+        container = "#voronoiContainer-pre";
+    } else if (state === "ROUND") {
+        container = "#voronoiContainer-round";
+    } else if (state === "POST") {
+        container = "#voronoiContainer-post";
+    } else if (state === "END") {
+        container = "#voronoiContainer-end";
+    }
+
+    d3.select(container).selectAll("*").remove();
 }
