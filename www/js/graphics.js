@@ -10,30 +10,6 @@ var width,
     popup,
     timer;
 
-initializeGraphics = function(seed) {
-  width = $(document).width();
-  height = $(document).height();
-
-  vertices = d3BoardData;
-  console.log(d3.geom.voronoi().links(vertices));
-
-  voronoi = d3.geom.voronoi()
-      .clipExtent([[0, 0], [width, height]])
-      .x(function(d){return d.x*width})
-      .y(function(d){return d.y*height})
-
-  svg = d3.select("#voronoiContainer").append("svg")
-      .attr("width", width)
-      .attr("height", height);
-
-  path = svg.append("g").selectAll("path");
-
-  div = d3.select("#voronoiContainer").append("div")   
-    .attr("class", "tooltip")           
-    .style("opacity", 0);
-
-}
-
 function polygon(d) {
   if ( typeof d === 'undefined'){
     d = [];
@@ -56,15 +32,15 @@ update = function(state, isSummaryDisplayed) {
     width = $(document).width();
     height = $(document).height();
 
-    vertices = d3.range(20).map(function(d) {
-        return [Math.random() * width, Math.random() * height];
-    });
+    vertices = d3BoardData;
 
     voronoi = d3.geom.voronoi()
         .clipExtent([
             [0, 0],
             [width, height]
-        ]);
+        ])
+        .x(function(d){return d.x*width})
+        .y(function(d){return d.y*height});
 
     svg = d3.select(container).append("svg")
         .attr("width", width)
