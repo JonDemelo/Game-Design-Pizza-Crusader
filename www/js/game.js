@@ -57,15 +57,15 @@ game.initialize = function(){
 	/* round start function */
 	pageLoadHandler(game.page['PRE'],function(event){
 		initializeGraphics();
-		update(false, false);
-		// countDown(5,
-		// 	function(time){
-		// 		updateTimer(time);	
-		// 	},
-		// 	function(){
-		// 		$.mobile.changePage(game.page['ROUND']);
-		// 	}
-		// )
+		update(true);
+		countDown(5,
+			function(time){
+				updateTimer(time);	
+			},
+			function(){
+				$.mobile.changePage(game.page['ROUND']);
+			}
+		)
 	})
 
 	$("#btn-deliver").click(function(){
@@ -74,12 +74,13 @@ game.initialize = function(){
 
 	/* ongoing round function */
 	pageLoadHandler(game.page['ROUND'],function(event){
-		$("#round-current-round").text(gameBoard.currentRound);
+		update(false);
+		// $("#round-current-round").text(gameBoard.currentRound);
 		countDown(5,
 			function(time){
-				$("#round-timer").text(time);
+				// $("#round-timer").text(time);
 				updateTimer(time);	
-				$("#debug-info").text(JSON.stringify(gameBoard,null,4))
+				// $("#debug-info").text(JSON.stringify(gameBoard,null,4))
 			},
 			function(){
 				$.mobile.changePage(game.page['POST']);
@@ -97,6 +98,7 @@ game.initialize = function(){
 
 	/* end of round function */
 	pageLoadHandler(game.page['POST'],function(event){
+		update(true);
 		var region = getRandomInt(0,gameBoard.regions.length-1);
 		console.log(region)
 
@@ -109,7 +111,7 @@ game.initialize = function(){
 		countDown(5,
 			function(time){
 				updateTimer(time);
-				$("#post-round-timer").text(time);		
+				// $("#post-round-timer").text(time);		
 			},
 			function(){
 				//TODO: check if any winners
@@ -123,8 +125,9 @@ game.initialize = function(){
 	})
 
 	pageLoadHandler(game.page['END'],function(event){
-		var winner =gameBoard.getWinner();
-		$("#winner").text(winner); 
+		update(true);
+		// var winner =gameBoard.getWinner();
+		// $("#winner").text(winner); 
 
 	})
 

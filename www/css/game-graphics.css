@@ -48,7 +48,7 @@ div.timer {
     text-align: center;
     vertical-align: middle;
     line-height: 40px; 
-    
+
  z-index : 1;
     position: absolute;     /* reference for measurement */
     text-align: left;
@@ -94,4 +94,49 @@ z-index : 1;
     -moz-box-shadow: 0 1px 5px rgba(0,0,0,0.4);
     border:1px solid rgba(200,200,200,0.85);
     opacity:0;       
+}
+
+.summary-header {
+    font-weight: bolder;
+    text-align: center;
+    font-size: 30pt;
+    padding-bottom: 10px;
+}
+
+.summary-content {
+
+}
+
+.summary-button {
+  position: absolute;
+    bottom: 5%; 
+    left: 10%;
+    font-size: 20pt;
+    height: 50px;
+    width: 80%;
+    /*display: block;*/
+    margin: 0 auto;
+}
+
+.zone-buttons {
+    margin-top: 10px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.zone-button-deliver {
+    background-color: green;
+    color: white;
+    width: 50%;
+    font-size: 20pt;
+    height: 50px;
+}
+
+.zone-button-undeliver {
+    background-color: red;
+    color: white;
+    width: 50%;
+    font-size: 20pt;
+    height: 50px;
 }
