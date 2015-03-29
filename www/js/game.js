@@ -15,7 +15,6 @@ game.newGame = function(){
 	game.currentState = 'PRE';
 	$.mobile.changePage(game.page['PRE']);
 	gameBoard = new GameBoard();
-	// initializeGraphics();
 	initializePlayers();
 };
 
@@ -56,11 +55,11 @@ game.initialize = function(){
 	
 	/* round start function */
 	pageLoadHandler(game.page['PRE'],function(event){
-		initializeGraphics();
-		update(true);
+		// initializeGraphics();
+		update("PRE", true);
 		countDown(5,
 			function(time){
-				updateTimer(time);	
+				updateTimer("PRE", time);	
 			},
 			function(){
 				$.mobile.changePage(game.page['ROUND']);
@@ -74,12 +73,12 @@ game.initialize = function(){
 
 	/* ongoing round function */
 	pageLoadHandler(game.page['ROUND'],function(event){
-		update(false);
-		// $("#round-current-round").text(gameBoard.currentRound);
+		update("ROUND", false);
+		$("#round-current-round").text(gameBoard.currentRound);
 		countDown(5,
 			function(time){
 				// $("#round-timer").text(time);
-				updateTimer(time);	
+				updateTimer("ROUND", time);	
 				// $("#debug-info").text(JSON.stringify(gameBoard,null,4))
 			},
 			function(){
@@ -98,7 +97,7 @@ game.initialize = function(){
 
 	/* end of round function */
 	pageLoadHandler(game.page['POST'],function(event){
-		update(true);
+		update("POST", true);
 		var region = getRandomInt(0,gameBoard.regions.length-1);
 		console.log(region)
 
@@ -110,7 +109,7 @@ game.initialize = function(){
 		console.log(gameBoard);
 		countDown(5,
 			function(time){
-				updateTimer(time);
+				updateTimer("POST", time);
 				// $("#post-round-timer").text(time);		
 			},
 			function(){
@@ -125,7 +124,7 @@ game.initialize = function(){
 	})
 
 	pageLoadHandler(game.page['END'],function(event){
-		update(true);
+		update("END", true);
 		// var winner =gameBoard.getWinner();
 		// $("#winner").text(winner); 
 

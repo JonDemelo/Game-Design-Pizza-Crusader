@@ -11,7 +11,24 @@ var width,
     timer;
 
 initializeGraphics = function(seed) {
+
+}
+
+function polygon(d) {
+    return "M" + d.join("L") + "Z";
+}
+
+update = function(state, isSummaryDisplayed) {
     log("graphics initialized");
+    if(state === "PRE") {
+      container = "#voronoiContainer-pre";
+    } else if (state === "ROUND") {
+      container = "#voronoiContainer-round";
+    } else if (state === "POST") {
+      container = "#voronoiContainer-post";
+    } else if (state === "END") {
+      container = "#voronoiContainer-end";
+    }
 
     width = $(document).width();
     height = $(document).height();
@@ -26,29 +43,26 @@ initializeGraphics = function(seed) {
             [width, height]
         ]);
 
-    svg = d3.select("#voronoiContainer").append("svg")
+    svg = d3.select(container).append("svg")
         .attr("width", width)
         .attr("height", height);
 
     path = svg.append("g").selectAll("path");
 
-    popup = d3.select("#voronoiContainer").append("div")
-        .attr("class", "tooltip")
+    popup = d3.select(container).append("div")
+        .classed("tooltip", true)
+        .classed(state, true)
         .style("opacity", 0);
 
-    timer = d3.select("#voronoiContainer").append("div")
-        .attr("class", "timer")
+    timer = d3.select(container).append("div")
+        .classed("timer", true)
+        .classed(state, true)
         .style("opacity", 1);
-}
 
-function polygon(d) {
-    return "M" + d.join("L") + "Z";
-}
-
-update = function(isSummaryDisplayed) {
     log("updateGraphics --- " + "isSummaryDisplayed: " + isSummaryDisplayed);
     noZone = false; // if there's a situation where the user is deselecting a zone
     divOpen = false; // there's a popup open already.
+    summaryOpened = false;
     if (isSummaryDisplayed) {
     	summaryOpened = true;
 	}
@@ -130,7 +144,6 @@ update = function(isSummaryDisplayed) {
 			        		// should be undisabled when 
 			        		// isSummaryDisplayed = false
 			        		// but it's not
-			        		log(isSummaryDisplayed);
 			        		return isSummaryDisplayed;
 			        	})
 			            .on("click", function(d) {	
@@ -212,6 +225,6 @@ update = function(isSummaryDisplayed) {
     }
 }
 
-updateTimer = function(timerValue) {
-    d3.select(".timer").text(timerValue);
+updateTimer = function(state, timerValue) {
+    d3.selectAll(".timer").filter("." + state).text(timerValue);
 }
