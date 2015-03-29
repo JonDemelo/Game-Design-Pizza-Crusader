@@ -44,12 +44,40 @@ circle {
 	margin: 0;
 }
 
+div.timer {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 40px; 
+    
+ z-index : 1;
+    position: absolute;     /* reference for measurement */
+    text-align: left;
+    background: #FFFFEF;
+    pointer-events: none;
+/*    width: 400px;
+    height: 165px;*/
+    padding: 10px;
+    border: 1px solid #D5D5D5;
+    font-family: arial,helvetica,sans-serif;
+    position: absolute;
+    font-size: 1.1em;
+    color: #333;
+    padding: 10px;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.9);
+    color: #000;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+    border:1px solid rgba(200,200,200,0.85);
+    opacity:0;    
+}
+
 div.tooltip {   
 z-index : 1;
     position: absolute;     /* reference for measurement */
     text-align: left;
     background: #FFFFEF;
-    
+
 /*    width: 400px;
     height: 165px;*/
     padding: 10px;

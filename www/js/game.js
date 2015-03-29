@@ -60,7 +60,7 @@ game.initialize = function(){
 		update(false, false);
 		// countDown(5,
 		// 	function(time){
-		// 		$("#pre-round-timer").text(time);	
+		// 		updateTimer(time);	
 		// 	},
 		// 	function(){
 		// 		$.mobile.changePage(game.page['ROUND']);
@@ -77,7 +77,8 @@ game.initialize = function(){
 		$("#round-current-round").text(gameBoard.currentRound);
 		countDown(5,
 			function(time){
-				$("#round-timer").text(time);	
+				$("#round-timer").text(time);
+				updateTimer(time);	
 				$("#debug-info").text(JSON.stringify(gameBoard,null,4))
 			},
 			function(){
@@ -107,6 +108,7 @@ game.initialize = function(){
 		console.log(gameBoard);
 		countDown(5,
 			function(time){
+				updateTimer(time);
 				$("#post-round-timer").text(time);		
 			},
 			function(){

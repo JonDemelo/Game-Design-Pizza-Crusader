@@ -56,8 +56,8 @@ game.initialize = function(){
 	
 	/* round start function */
 	pageLoadHandler(game.page['PRE'],function(event){
-			initializeGraphics();
-		updateMap();
+		initializeGraphics();
+		update(false, false);
 		// countDown(5,
 		// 	function(time){
 		// 		$("#pre-round-timer").text(time);	
@@ -74,7 +74,6 @@ game.initialize = function(){
 
 	/* ongoing round function */
 	pageLoadHandler(game.page['ROUND'],function(event){
-		updateMap();
 		$("#round-current-round").text(gameBoard.currentRound);
 		countDown(5,
 			function(time){
@@ -97,7 +96,6 @@ game.initialize = function(){
 
 	/* end of round function */
 	pageLoadHandler(game.page['POST'],function(event){
-		updateMap();
 		var region = getRandomInt(0,gameBoard.regions.length-1);
 		console.log(region)
 
@@ -123,7 +121,6 @@ game.initialize = function(){
 	})
 
 	pageLoadHandler(game.page['END'],function(event){
-		updateMap();
 		var winner =gameBoard.getWinner();
 		$("#winner").text(winner); 
 

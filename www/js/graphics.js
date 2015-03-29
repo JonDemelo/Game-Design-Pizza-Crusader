@@ -1,26 +1,20 @@
 // Where the game visuals will be initialized.
 
-	var width = 800,
-	    height = 800;
-	// var width = $(document).width();
-	// var height = $(document).height();
-	var vertices;
-	var voronoi;
-	var svg;
-	var path;
-	var drag;
-	var div;
+var width,
+    height,
+    vertices,
+	voronoi,
+	svg,
+	path,
+	drag,
+	popup,
+	timer;
 
 initializeGraphics = function(seed) {
 	log("graphics initialized");
 
 	width = $(document).width();
 	height = $(document).height();
-	// drag = d3.behavior.drag()
- //    .origin(function(d) { return d; })
- //    .on("dragstart", dragstarted)
- //    .on("drag", dragged)
- //    .on("dragend", dragended);
 
 	vertices = d3.range(20).map(function(d) {
 	  return [Math.random() * width, Math.random() * height];
@@ -35,9 +29,13 @@ initializeGraphics = function(seed) {
 
 	path = svg.append("g").selectAll("path");
 
-	div = d3.select("#voronoiContainer").append("div")   
-    .attr("class", "tooltip")           
-    .style("opacity", 0);
+	popup = d3.select("#voronoiContainer").append("div")   
+	    .attr("class", "tooltip")           
+	    .style("opacity", 0);
+
+	timer = d3.select("#voronoiContainer").append("div")   
+	    .attr("class", "timer")           
+	    .style("opacity", 1);
 }
 
 function polygon(d) {
@@ -45,6 +43,9 @@ function polygon(d) {
 }
 
 update = function (isSummaryDisplayed, isZoneDisplayed) {
+  log("updateGraphics --- " + "isSummaryDisplayed: " + isSummaryDisplayed 
+  	+ ", isZoneDisplayed: " + isZoneDisplayed);
+
   noZone = false; // if there's a situation where the user is deselecting a zone
   divOpen = false; // there's a popup open already.
 
@@ -59,7 +60,6 @@ update = function (isSummaryDisplayed, isZoneDisplayed) {
       .attr("opacity", function () {
       	return 1;
       })
-      // .call(drag)
       .on("click", function(d) {
       	 // every zone is unfaded
       	if(!divOpen) { // if there's a pop up open, you can't click a zone
@@ -82,7 +82,7 @@ update = function (isSummaryDisplayed, isZoneDisplayed) {
 	      		}
 	      	}
 	    } else { // close popup instead of clicking new zone.
-        	div.transition().duration(200)
+        	popup.transition().duration(200)
 				.style("pointer-events", "none")      
 				.style("opacity", 0);
 	    }
@@ -94,17 +94,17 @@ update = function (isSummaryDisplayed, isZoneDisplayed) {
 	      		// TODO: custom for zone display
 	      	} else { // TODO: Will actually not show anything, but here for testing
 	      		divOpen = true;
-	      		div.transition().duration(200)
+	      		popup.transition().duration(200)
 		  	    	.style("pointer-events", "all")       
 		            .style("opacity", .9);      
-			    div.text("test")
+			    popup.text("test")
 			        .style("left", width*0.1 + "px")     
 			        .style("top", height*0.1 + "px")
 			        .style("width", width*0.75 + "px")
 			        .style("height", height*0.6 + "px")
 			        .append("button")
 			        	.on("click", function (d) {
-			        		div.transition().duration(200)
+			        		popup.transition().duration(200)
 			        			.style("pointer-events", "none")      
 		           				.style("opacity", 0);  
 		           			divOpen = false;
@@ -118,22 +118,16 @@ update = function (isSummaryDisplayed, isZoneDisplayed) {
       });
 
   path.order();
+
+	timer.style("left", width*0.01 + "px")     
+	    .style("top", height*0.01 + "px")
+	    .style("width", 40 + "px")
+	    .style("height", 40 + "px");
+
 }
 
-updateMiniMap = function (isDisplayed) {
-
-}
-
-updateZoneInfo = function (isDisplayed) {
-
-} 
-
-updateGameSummary = function (isDisplayed, isEnd) {
-	if(!isEnd) {
-		// normal between-round summary
-	} else {
-		// end of game summary.
-	}
+updateTimer = function (timerValue) {
+	 d3.select(".timer").text(timerValue);
 }
 
 
