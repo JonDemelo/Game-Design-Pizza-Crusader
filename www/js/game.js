@@ -11,6 +11,13 @@ game.page = {
 game.isInitialized = false;
 game.currentRound = 0;
 
+
+timerDurations = {
+	'PRE': 5,
+	'ROUND': 5,
+	'POST': 5
+}
+
 game.newGame = function(){
 	game.currentState = 'PRE';
 	$.mobile.changePage(game.page['PRE']);
@@ -57,7 +64,8 @@ game.initialize = function(){
 	pageLoadHandler(game.page['PRE'],function(event){
 		// initializeGraphics();
 		update("PRE", true);
-		countDown(5,
+		updateTimer("PRE", timerDurations['PRE']);
+		countDown(timerDurations['PRE'],
 			function(time){
 				updateTimer("PRE", time);	
 			},
@@ -75,8 +83,9 @@ game.initialize = function(){
 	/* ongoing round function */
 	pageLoadHandler(game.page['ROUND'],function(event){
 		update("ROUND", false);
-		$("#round-current-round").text(gameBoard.currentRound);
-		countDown(5,
+		updateTimer("ROUND", timerDurations['ROUND']);
+		// $("#round-current-round").text(gameBoard.currentRound);
+		countDown(timerDurations['ROUND'],
 			function(time){
 				// $("#round-timer").text(time);
 				updateTimer("ROUND", time);	
@@ -100,6 +109,7 @@ game.initialize = function(){
 	/* end of round function */
 	pageLoadHandler(game.page['POST'],function(event){
 		update("POST", true);
+		updateTimer("POST", timerDurations['POST']);
 		var region = getRandomInt(0,gameBoard.regions.length-1);
 		console.log(region)
 
@@ -109,7 +119,7 @@ game.initialize = function(){
 		//make bot do something here
 		
 		console.log(gameBoard);
-		countDown(5,
+		countDown(timerDurations['POST'],
 			function(time){
 				updateTimer("POST", time);
 				// $("#post-round-timer").text(time);		

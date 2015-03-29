@@ -65,11 +65,12 @@ update = function(state, isSummaryDisplayed) {
         .classed(state, true)
         .style("opacity", 0);
 
-    timer = d3.select(container).append("div")
-        .classed("timer", true)
-        .classed(state, true)
-        .style("opacity", 1);
-
+  if(state !== "END") {
+      timer = d3.select(container).append("div")
+          .classed("timer", true)
+          .classed(state, true)
+          .style("opacity", 1);
+  }
 
     path = path.data(voronoi(vertices), polygon);
 
