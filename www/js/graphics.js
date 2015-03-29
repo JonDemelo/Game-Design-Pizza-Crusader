@@ -16,7 +16,6 @@ initializeGraphics = function(seed) {
 
   width = $(document).width();
   height = $(document).height();
-  console.log(width+" "+height)
   // drag = d3.behavior.drag()
  //    .origin(function(d) { return d; })
  //    .on("dragstart", dragstarted)
@@ -31,7 +30,7 @@ initializeGraphics = function(seed) {
   voronoi = d3.geom.voronoi()
       .clipExtent([[0, 0], [width, height]])
       .x(function(d){return d.x})
-      .y(function(d){return d.y});
+      .y(function(d){return d.y})
 
   svg = d3.select("#voronoiContainer").append("svg")
       .attr("width", width)
@@ -48,14 +47,12 @@ function polygon(d) {
   if ( typeof d === 'undefined'){
     d = [];
   }
-  console.log(d)
   return "M" + d.join("L") + "Z";
 }
 
 update = function (isSummaryDisplayed, isZoneDisplayed) {
   noZone = false; // if there's a situation where the user is deselecting a zone
   divOpen = false; // there's a popup open already.
-  console.log(vertices);
   path = path.data(voronoi(vertices), polygon);
 
   path.exit().remove();
@@ -67,6 +64,7 @@ update = function (isSummaryDisplayed, isZoneDisplayed) {
       .attr("opacity", function () {
         return 1;
       })
+      .data(d3BoardData)
       // .call(drag)
       .on("click", function(d) {
          // every zone is unfaded
@@ -101,6 +99,7 @@ update = function (isSummaryDisplayed, isZoneDisplayed) {
           } else if (isZoneDisplayed) {
             // TODO: custom for zone display
           } else { // TODO: Will actually not show anything, but here for testing
+            console.log(d);
             divOpen = true;
             div.transition().duration(200)
               .style("pointer-events", "all")       
