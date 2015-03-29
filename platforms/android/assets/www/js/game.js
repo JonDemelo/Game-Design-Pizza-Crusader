@@ -15,7 +15,6 @@ game.newGame = function(){
 	game.currentState = 'PRE';
 	$.mobile.changePage(game.page['PRE']);
 	gameBoard = new GameBoard();
-	// initializeGraphics();
 	initializePlayers();
 };
 
@@ -56,16 +55,16 @@ game.initialize = function(){
 	
 	/* round start function */
 	pageLoadHandler(game.page['PRE'],function(event){
-		initializeGraphics();
-		update(false, false);
-		// countDown(5,
-		// 	function(time){
-		// 		$("#pre-round-timer").text(time);	
-		// 	},
-		// 	function(){
-		// 		$.mobile.changePage(game.page['ROUND']);
-		// 	}
-		// )
+		// initializeGraphics();
+		update("PRE", true);
+		countDown(5,
+			function(time){
+				updateTimer("PRE", time);	
+			},
+			function(){
+				$.mobile.changePage(game.page['ROUND']);
+			}
+		)
 	})
 
 	$("#btn-deliver").click(function(){
@@ -74,11 +73,13 @@ game.initialize = function(){
 
 	/* ongoing round function */
 	pageLoadHandler(game.page['ROUND'],function(event){
+		update("ROUND", false);
 		$("#round-current-round").text(gameBoard.currentRound);
 		countDown(5,
 			function(time){
-				$("#round-timer").text(time);	
-				$("#debug-info").text(JSON.stringify(gameBoard,null,4))
+				// $("#round-timer").text(time);
+				updateTimer("ROUND", time);	
+				// $("#debug-info").text(JSON.stringify(gameBoard,null,4))
 			},
 			function(){
 				$.mobile.changePage(game.page['POST']);
@@ -96,6 +97,7 @@ game.initialize = function(){
 
 	/* end of round function */
 	pageLoadHandler(game.page['POST'],function(event){
+		update("POST", true);
 		var region = getRandomInt(0,gameBoard.regions.length-1);
 		console.log(region)
 
@@ -107,7 +109,8 @@ game.initialize = function(){
 		console.log(gameBoard);
 		countDown(5,
 			function(time){
-				$("#post-round-timer").text(time);		
+				updateTimer("POST", time);
+				// $("#post-round-timer").text(time);		
 			},
 			function(){
 				//TODO: check if any winners
@@ -121,8 +124,9 @@ game.initialize = function(){
 	})
 
 	pageLoadHandler(game.page['END'],function(event){
-		var winner =gameBoard.getWinner();
-		$("#winner").text(winner); 
+		update("END", true);
+		// var winner =gameBoard.getWinner();
+		// $("#winner").text(winner); 
 
 	})
 
