@@ -66,6 +66,9 @@ update = function (isSummaryDisplayed, isZoneDisplayed) {
       })
       .data(d3BoardData)
       // .call(drag)
+      .on("mouseover",function(d){
+        console.log(d);
+      })
       .on("click", function(d) {
          // every zone is unfaded
         if(!divOpen) { // if there's a pop up open, you can't click a zone
