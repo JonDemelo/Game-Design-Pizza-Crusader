@@ -48,10 +48,9 @@ div.timer {
     text-align: center;
     vertical-align: middle;
     line-height: 40px; 
-
  z-index : 1;
     position: absolute;     /* reference for measurement */
-    text-align: left;
+    /*text-align: left;*/
     background: #FFFFEF;
     pointer-events: none;
 /*    width: 400px;
@@ -59,8 +58,8 @@ div.timer {
     padding: 10px;
     border: 1px solid #D5D5D5;
     font-family: arial,helvetica,sans-serif;
-    position: absolute;
-    font-size: 1.1em;
+/*    position: absolute;*/
+    font-size: 25pt;
     color: #333;
     padding: 10px;
     border-radius: 3px;
