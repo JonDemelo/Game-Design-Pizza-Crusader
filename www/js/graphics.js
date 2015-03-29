@@ -22,10 +22,9 @@ initializeGraphics = function(seed) {
  //    .on("drag", dragged)
  //    .on("dragend", dragended);
 
-  /*vertices = d3.range(20).map(function(d) {
-    return [Math.random() * width, Math.random() * height];
-  });*/
+  
   vertices = d3BoardData;
+console.log(d3.geom.voronoi().links(vertices));
 
   voronoi = d3.geom.voronoi()
       .clipExtent([[0, 0], [width, height]])

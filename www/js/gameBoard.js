@@ -12,7 +12,7 @@ var Region = function(generator){
 var GameBoard = function(){
 	this.players = [];
 	this.regions = [];
-	for(i = 0;i<10;i++){
+	for(i = 0;i<d3BoardData.length;i++){
 		this.regions.push(new Region(1))
 	}
 	this.currentRound = 1;
