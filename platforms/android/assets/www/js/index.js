@@ -43,7 +43,6 @@ var app = { // TODO: Any easier injection development strategies?
     },
 
     hideSplash: function() {
-        log("test");
         currentPage = $( ":mobile-pagecontainer").pagecontainer( "getActivePage" );
         if(currentPage.context.URL.indexOf("#") === -1) { // stop splash outside of root
             setTimeout(function () {

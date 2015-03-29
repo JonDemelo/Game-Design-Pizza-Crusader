@@ -182,7 +182,7 @@
         <!-- various game screens -->
         <!-- Pre round -->
         <div data-role="page" id="page-game-pre-round">
-            <div role="main" class="ui-content">
+            <div role="main" class="ui-content graphics-state">
 <!--                 <p>pre round</p>
                 <div id="pre-round-timer"></div> -->
                 <div id="voronoiContainer"></div>
@@ -190,7 +190,7 @@
         </div>
 
         <div data-role="page" id="page-game-round">
-            <div role="main" class="ui-content">
+            <div role="main" class="ui-content graphics-state">
                 <p>Actual round</p>
                 <div id="round-timer"></div>
                 <div id="round-current-round"></div>
@@ -205,18 +205,20 @@
         </div>
 
         <div data-role="page" id="page-game-post">
-            <div role="main" class="ui-content">
+            <div role="main" class="ui-content graphics-state">
                 <p>Post round</p>
                 <div id="post-round-timer"></div>
+                <div id="voronoiContainer"></div>
             </div>
         </div>
 
         <div data-role="page" id="page-game-end">
-            <div role="main" class="ui-content">
+            <div role="main" class="ui-content graphics-state">
                 <p>End Of Game</p>
                 <h1>Winner is: </h1>
                 <h1 id="winner"></h1>
                 <a href="#page-main-menu" class="ui-btn">Go to main menu</a>
+                <div id="voronoiContainer"></div>
             </div>
         </div>
     </body>

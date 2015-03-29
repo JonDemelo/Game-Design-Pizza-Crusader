@@ -50,8 +50,8 @@ z-index : 1;
     text-align: left;
     pointer-events: none;     /* 'none' tells the mouse to ignore the rectangle */
     background: #FFFFEF;
-/*    width: 400px;
-    height: 165px;*/
+    width: 400px;
+    height: 165px;
     padding: 10px;
     border: 1px solid #D5D5D5;
     font-family: arial,helvetica,sans-serif;
