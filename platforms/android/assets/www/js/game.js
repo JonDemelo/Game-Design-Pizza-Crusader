@@ -15,7 +15,7 @@ game.newGame = function(){
 	game.currentState = 'PRE';
 	$.mobile.changePage(game.page['PRE']);
 	gameBoard = new GameBoard();
-	initializeGraphics();
+	// initializeGraphics();
 	initializePlayers();
 };
 
@@ -56,6 +56,7 @@ game.initialize = function(){
 	
 	/* round start function */
 	pageLoadHandler(game.page['PRE'],function(event){
+			initializeGraphics();
 		updateMap();
 		// countDown(5,
 		// 	function(time){

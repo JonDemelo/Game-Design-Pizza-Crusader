@@ -79,9 +79,12 @@ updateMap = function (isDisplayed, isBlurred) {
 
       	div.transition().duration(200)      
                 .style("opacity", .9);      
-        div.html("Test" + "<br/>")  
-            .style("left", (d3.event.pageX) + "px")     
-            .style("top", (d3.event.pageY - 28) + "px");
+        div.text("test")
+            .style("left", width*0.1 + "px")     
+            .style("top", height*0.1 + "px")
+            .style("width", width*0.75 + "px")
+            .style("height", height*0.6 + "px")
+            .append("button").text("close");
       });
 
   path.order();

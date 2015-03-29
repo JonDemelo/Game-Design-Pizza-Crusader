@@ -15,7 +15,7 @@ game.newGame = function(){
 	game.currentState = 'PRE';
 	$.mobile.changePage(game.page['PRE']);
 	gameBoard = new GameBoard();
-	initializeGraphics();
+	// initializeGraphics();
 	initializePlayers();
 };
 

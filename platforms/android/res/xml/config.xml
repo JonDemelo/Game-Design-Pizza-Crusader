@@ -8,6 +8,7 @@
     <author email="jdemelo8@uwo.ca" href="uwo.ca">
         Pizza Crusader Team - Jonathan Demelo, Ramesh Raj
     </author>
+    <preference name="orientation" value="portrait" />
     <content src="index.html" />
     <access origin="*" />
 </widget>
