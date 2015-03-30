@@ -1,5 +1,7 @@
-var Player = function(color){
+var Player = function(color,name){
 	this.color = color;
+	this.name = name;
+	this.numResources = 1;
 }
 
 Player.prototype.assignDelivery = function(regionId){
@@ -10,9 +12,13 @@ Player.prototype.assignDelivery = function(regionId){
 	}
 }
 
+Player.prototype.removeDelivery = function(regionId){
+	this.numResources += gameBoard.removeDeliveries(this.id,regionId);
+}
 
-var botPlayer = new Player('red');
-var currentPlayer = new Player('blue');
+
+var botPlayer = new Player('red','Bot');
+var currentPlayer = new Player('blue','You');
 
 function initializePlayers(){
 	botPlayer.id = gameBoard.players.length;
@@ -20,6 +26,6 @@ function initializePlayers(){
 	currentPlayer.id = gameBoard.players.length;
 	gameBoard.players.push(currentPlayer);
 
-	botPlayer.numResources = 4;
-	currentPlayer.numResources = 4;
+	gameBoard.regions[4].playerId = currentPlayer.id;
+	gameBoard.regions[25].playerId = botPlayer.id;
 }

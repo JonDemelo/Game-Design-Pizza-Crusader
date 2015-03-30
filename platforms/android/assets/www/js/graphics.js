@@ -8,63 +8,56 @@ var width,
     path,
     drag,
     popup,
-    timer;
-
-initializeGraphics = function(seed) {
-  width = $(document).width();
-  height = $(document).height();
-
-  vertices = d3BoardData;
-  console.log(d3.geom.voronoi().links(vertices));
-
-  voronoi = d3.geom.voronoi()
-      .clipExtent([[0, 0], [width, height]])
-      .x(function(d){return d.x*width})
-      .y(function(d){return d.y*height})
-
-  svg = d3.select("#voronoiContainer").append("svg")
-      .attr("width", width)
-      .attr("height", height);
-
-  path = svg.append("g").selectAll("path");
-
-  div = d3.select("#voronoiContainer").append("div")   
-    .attr("class", "tooltip")           
-    .style("opacity", 0);
-
-}
+    resources,
+    timer,
+    exit;
 
 function polygon(d) {
-  if ( typeof d === 'undefined'){
-    d = [];
-  }
-  return "M" + d.join("L") + "Z";
+    if (typeof d === 'undefined') {
+        d = [];
+    }
+    return "M" + d.join("L") + "Z";
 }
 
 update = function(state, isSummaryDisplayed) {
-    log("graphics initialized");
-    if(state === "PRE") {
-      container = "#voronoiContainer-pre";
-    } else if (state === "ROUND") {
-      container = "#voronoiContainer-round";
-    } else if (state === "POST") {
-      container = "#voronoiContainer-post";
-    } else if (state === "END") {
-      container = "#voronoiContainer-end";
+    log("updateGraphics --- " + "isSummaryDisplayed: " + isSummaryDisplayed);
+
+    noZone = false; // if there's a situation where the user is deselecting a zone
+    divOpen = false; // there's a popup open already.
+    summaryOpened = false;
+    if (isSummaryDisplayed) {
+        summaryOpened = true;
     }
+
+    if (state === "PRE") {
+        container = "#voronoiContainer-pre";
+    } else if (state === "ROUND") {
+        container = "#voronoiContainer-round";
+    } else if (state === "POST") {
+        container = "#voronoiContainer-post";
+    } else if (state === "END") {
+        container = "#voronoiContainer-end";
+    }
+    log("container:" + container);
 
     width = $(document).width();
     height = $(document).height();
 
-    vertices = d3.range(20).map(function(d) {
-        return [Math.random() * width, Math.random() * height];
-    });
+
+    vertices = d3BoardData;
 
     voronoi = d3.geom.voronoi()
         .clipExtent([
             [0, 0],
             [width, height]
-        ]);
+        ])
+        .x(function(d) {
+            return d.x * width
+        })
+        .y(function(d) {
+            return d.y * height
+        });
+
 
     svg = d3.select(container).append("svg")
         .attr("width", width)
@@ -77,26 +70,36 @@ update = function(state, isSummaryDisplayed) {
         .classed(state, true)
         .style("opacity", 0);
 
-    timer = d3.select(container).append("div")
-        .classed("timer", true)
+    resources = d3.select(container).append("div")
+        .classed("resources", true)
         .classed(state, true)
-        .style("opacity", 1);
+        .style("opacity", 0.8);
 
-    log("updateGraphics --- " + "isSummaryDisplayed: " + isSummaryDisplayed);
-    noZone = false; // if there's a situation where the user is deselecting a zone
-    divOpen = false; // there's a popup open already.
-    summaryOpened = false;
-    if (isSummaryDisplayed) {
-    	summaryOpened = true;
+    if(state !== "END") {
+        timer = d3.select(container).append("div")
+            .classed("timer", true)
+            .classed(state, true)
+            .style("opacity", 0.8);
     }
+
+    exit = d3.select(container).append("button")
+            .classed("exit", true)
+            .classed(state, true)
+            .style("opacity", 0.8);
 
     path = path.data(voronoi(vertices), polygon);
 
     path.exit().remove();
 
     path.enter().append("path")
-        .attr("class", function(d, i) {
-            return "q" + (i % 9) + "-9";
+        .attr("fill", function(d,i){
+            var playerId = gameBoard.regions[i].playerId
+            if ( playerId == null ){
+              return "grey"
+            }else{
+              return gameBoard.players[playerId].color
+            }
+
         })
         .classed("unfaded", true)
         .attr("d", polygon)
@@ -107,7 +110,7 @@ update = function(state, isSummaryDisplayed) {
         .on("click", function(d) {
             // every zone is unfaded
             if (!divOpen && !isSummaryDisplayed) { // if there's a pop up open, 
-            	//you can't click a zone
+                //you can't click a zone
                 if (d3.selectAll(".unfaded")[0].length > 1) {
                     d3.selectAll('.unfaded').classed("faded", true);
                     d3.selectAll('.unfaded').classed("unfaded", false);
@@ -127,77 +130,75 @@ update = function(state, isSummaryDisplayed) {
                     }
                 }
             } else { // close popup instead of clicking new zone.
-            	if(summaryOpened) {
-            		summaryOpened = false;
-            	}
+                if (summaryOpened) {
+                    summaryOpened = false;
+                }
                 popup.transition().duration(200)
                     .style("pointer-events", "none")
                     .style("opacity", 0);
             }
 
             if (!noZone && !divOpen) {
-                  divOpen = true;
-                  popup.selectAll("*").remove();
+                divOpen = true;
+                popup.selectAll("*").remove();
 
-			      popup.transition().duration(200)
-			            .style("pointer-events", "all")
-			            .style("opacity", .9);
+                popup.transition().duration(200)
+                    .style("pointer-events", "all")
+                    .style("opacity", .9);
 
-			        popup.style("left", width * 0.1 + "px")
-			            .style("top", height * 0.2 + "px")
-			            .style("width", width * 0.75 + "px")
-			            .style("height", height * 0.6 + "px");
+                popup.style("left", width * 0.1 + "px")
+                    .style("top", height * 0.2 + "px")
+                    .style("width", width * 0.75 + "px")
+                    .style("height", height * 0.6 + "px");
 
-			        popup.append("div")
-			            .attr("class", "summary-header")
-			            .text("ZONE");
+                popup.append("div")
+                    .attr("class", "summary-header")
+                    .text("ZONE " + d.id);
 
-			        popup.append("div")
-			            .attr("class", "summary-contents")
-			            .text(function (d) {
-			            	return "ZONE CONTENTS FILL THIS"
-			            	+ "WITH STUFF FROM ZONE STATE AND MAKE IT LOOK NICE"; 
-			            });
+                popup.append("div")
+                    .attr("class", "summary-contents")
+                    .html(function(g) {
+                        var owner = gameBoard.getOwner(d.id);
+                        var ownerText = " This zone is not owned.";
+                        if ( owner != null){
+                          ownerText = "This zone is owned by <font color='"+owner.color+"'>"+owner.name+"</font>";
+                        }
 
-			        var zoneButtons = popup.append("div")
-			        	.attr("class", "zone-buttons");
+                        var numDeliveriesText = gameBoard.getNumberOfDeliveries(d.id)+" items deliviered this turn";
+                        var productionText = "This zone produces "+gameBoard.regions[d.id].generator+" items";
 
-			        zoneButtons.append("button")
-			        	.attr("class", "zone-button-deliver")
-			        	.attr("disabled", function(d) { // TODO: Issue
-			        		// should be undisabled when 
-			        		// isSummaryDisplayed = false
-			        		// but it's not
-			        		return isSummaryDisplayed;
-			        	})
-			            .on("click", function(d) {	
-			            	log("test");
-			            	// TODO add delivery
-			            })
-			            .text("+1");
+                        return [ownerText,numDeliveriesText,productionText].join("<br />");
+                    });
 
-			        zoneButtons.append("button")
-			        	.attr("class", "zone-button-undeliver")
-			        	.attr("disabled", function(d) {
+                if ( gameBoard.canDeliver(currentPlayer.id,d.id)){
+                    var zoneButtons = popup.append("div")
+                        .attr("class", "zone-buttons");
 
-			        		// TODO same here
-			        		return isSummaryDisplayed;
-			        	})
-			            .on("click", function(d) {	
-			            	// TODO remove delivery
-			            })
-			            .text("-1");
+                    zoneButtons.append("button")
+                        .attr("class", "zone-button-deliver")
+                        .on("click", function(e) {
+                            currentPlayer.assignDelivery(d.id);
+                        })
+                        .text("+1");
 
-			        popup.append("button")
-			        	.attr("class", "summary-button")
-			            .on("click", function(d) {
-			                popup.transition().duration(200)
-			                    .style("pointer-events", "none")
-			                    .style("opacity", 0);
-			                divOpen = false;
-			                summaryOpened = false;
-			            })
-			            .text("CLOSE");
+                    zoneButtons.append("button")
+                        .attr("class", "zone-button-undeliver")
+                        .on("click", function(e) {
+                            currentPlayer.removeDelivery(d.id);
+                        })
+                        .text("-1");
+                }
+
+                popup.append("button")
+                    .attr("class", "summary-button")
+                    .on("click", function(d) {
+                        popup.transition().duration(200)
+                            .style("pointer-events", "none")
+                            .style("opacity", 0);
+                        divOpen = false;
+                        summaryOpened = false;
+                    })
+                    .text("CLOSE");
 
             } else {
                 divOpen = false;
@@ -207,11 +208,53 @@ update = function(state, isSummaryDisplayed) {
 
     path.order();
 
-    timer.style("left", width * 0.01 + "px")
-        .style("top", height * 0.01 + "px")
-        .style("width", 40 + "px")
+    if(state !== "END") {
+      timer.style("left", width * 0.01 + "px")
+          .style("top", height * 0.01 + "px")
+          .style("width", 40 + "px")
+          .style("height", 40 + "px");
+    }
+
+    exit.style("right", width * 0.01 + "px")
+          .style("top", height * 0.01 + "px")
+          .style("width", 40 + "px")
+          .style("height", 40 + "px")
+          .on("click", function(d) {
+              $.mobile.changePage("#page-main-menu");
+          })
+          .text("X");
+
+    resources.style("left", width * 0.25 + "px")
+        .style("top", height * 0.85 + "px")
+        .style("width", width * 0.5 + "px")
         .style("height", 40 + "px");
 
+    resources.append("img")
+          .attr("src", "img/splash-pizza-2.PNG")
+          .attr("height", 30 + "px")
+          .attr("width", 30 + "px");
+
+    resources.append("text")
+          .text(function(d) {
+              return 1;
+              // TODO: number of player deliveries available
+          })
+          .attr("margin", 20+"px")
+          .attr("height", 30 + "px")
+          .attr("width", 30 + "px");
+
+    resources.append("img")
+          .attr("src", "img/store-red.png")
+          .attr("height", 30 + "px")
+          .attr("width", 30 + "px");
+
+    resources.append("text")
+          .text(function(d) {
+              return 1;
+              // TODO: number of player zones
+          })
+          .attr("height", 30 + "px")
+          .attr("width", 30 + "px");
 
     if (isSummaryDisplayed && summaryOpened) { // load right off in summary states
         divOpen = true;
@@ -226,29 +269,80 @@ update = function(state, isSummaryDisplayed) {
 
         popup.append("div")
             .attr("class", "summary-header")
-            .text("SUMMARY");
+            .text(state + " SUMMARY");
 
-        popup.append("div")
-            .attr("class", "summary-contents")
-            .text(function (d) {
-            	return "SUMMARY CONTENTS FILL THIS"
-            	+ "WITH STUFF FROM GAME STATE AND MAKE IT LOOK NICE"; 
-            });
+        log(gameBoard);
 
-        popup.append("button")
-        	.attr("class", "summary-button")
-            .on("click", function(d) {
-                popup.transition().duration(200)
-                    .style("pointer-events", "none")
-                    .style("opacity", 0);
-                divOpen = false;
-                summaryOpened = false;
-            })
-            .text("CLOSE");
+
+        if(state === "PRE") {
+            popup.append("div")
+              .attr("class", "summary-contents")
+              .html(function(d) {
+                  return "<p>Current Round: " + gameBoard.currentRound +"</p>" 
+                  + "<p>Number of Rounds Left: "+ (gameBoard.numberOfRounds - gameBoard.currentRound) +"</p>"
+                  + "<p>Number of Players: "+ gameBoard.players.length +"</p>";
+              });
+        } else if (state === "POST") {
+            popup.append("div")
+              .attr("class", "summary-contents")
+              .html(function(d) {
+                  return "<p>Current Round: " + gameBoard.currentRound +"</p>" 
+                  + "<p>Number of Rounds Left: "+ (gameBoard.numberOfRounds - gameBoard.currentRound) +"</p>"
+                  + "<p>Number of Players: "+ gameBoard.players.length +"</p>";
+              });
+        } else if (state === "END") {
+            popup.append("div")
+              .attr("class", "summary-contents")
+              .html(function(d) {
+                log(gameBoard.getWinner());
+                  return "<p>Winner: " + gameBoard.getWinner().name +"</p>"
+                  + "<p>Number of Zones: " + gameBoard.getWinner().numResources +"</p>";
+              });
+        }
+
+        if(state === "END") {
+          popup.append("button")
+              .attr("class", "summary-button")
+              .on("click", function(d) {
+                  popup.transition().duration(200)
+                      .style("pointer-events", "none")
+                      .style("opacity", 0);
+                  divOpen = false;
+                  summaryOpened = false;
+                  cleanup(state);
+                  $.mobile.changePage("#page-main-menu");
+              })
+              .text("RETURN TO MAIN MENU");
+        } else {
+          popup.append("button")
+              .attr("class", "summary-button")
+              .on("click", function(d) {
+                  popup.transition().duration(200)
+                      .style("pointer-events", "none")
+                      .style("opacity", 0);
+                  divOpen = false;
+                  summaryOpened = false;
+              })
+              .text("CLOSE");
+        }
 
     }
 }
 
 updateTimer = function(state, timerValue) {
     d3.selectAll(".timer").filter("." + state).text(timerValue);
+}
+
+cleanup = function(state) {
+    if (state === "PRE") {
+        container = "#voronoiContainer-pre";
+    } else if (state === "ROUND") {
+        container = "#voronoiContainer-round";
+    } else if (state === "POST") {
+        container = "#voronoiContainer-post";
+    } else if (state === "END") {
+        container = "#voronoiContainer-end";
+    }
+
+    d3.select(container).selectAll("*").remove();
 }
