@@ -27,6 +27,7 @@ GameBoard.prototype.assignDeliveries = function(playerId,regionId, numDeliveries
 
 GameBoard.prototype.endRound = function(){
 	//update which region belongs to which player
+	log("end round called");
 	var self = this;
 	this.currentRound++;
 	this.regions.forEach(function(region){
@@ -83,7 +84,7 @@ GameBoard.prototype.getWinner = function(){
 		}
 	});
 
-	var winner = 0;
+	var winner = null;
 	var numberOfRegions = 0;
 
 	numRegionsByPlayer.forEach(function(num,i){
@@ -93,7 +94,8 @@ GameBoard.prototype.getWinner = function(){
 		numberOfRegions = num;
 	})
 
-	return winner;
+
+	return winner == null ? null: this.players[winner];
 
 }
 
