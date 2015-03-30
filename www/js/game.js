@@ -4,7 +4,6 @@ game.page = {
 	'LOAD': '#page-play-game',
 	'PRE': '#page-game-pre-round',
 	'ROUND': '#page-game-round',
-	'POST': '#page-game-post',
 	'END': '#page-game-end'
 }
 
@@ -13,9 +12,8 @@ game.currentRound = 0;
 
 
 timerDurations = {
-	'PRE': 5,
-	'ROUND': 5,
-	'POST': 5
+	'PRE': 10,
+	'ROUND': 10,
 }
 
 game.newGame = function(){
@@ -83,18 +81,27 @@ game.initialize = function(){
 
 	/* ongoing round function */
 	pageLoadHandler(game.page['ROUND'],function(event){
-		// $("#round-current-round").text(gameBoard.currentRound);
+		
+		//bot actions
+
 		countDown(timerDurations['ROUND'],
 			function(time){
-				// $("#round-timer").text(time);
 				updateTimer("ROUND", time);	
-				// $("#debug-info").text(JSON.stringify(gameBoard,null,4))
 			},
 			function(){
 				cleanup("ROUND");
-				update("POST", true);
-				updateTimer("POST", timerDurations['POST']);
-				$.mobile.changePage(game.page['POST']);
+				if ( gameBoard.isGameOver() ){
+					update("END", true);
+					$.mobile.changePage(game.page['END']);
+				}else{
+					var region = getRandomInt(0,gameBoard.regions.length-1);
+					console.log(region)
+					botPlayer.assignDelivery(region,1);
+					gameBoard.endRound();
+					update("PRE", true);
+					updateTimer("PRE", timerDurations['PRE']);
+					$.mobile.changePage(game.page['PRE']);
+				}
 			}
 		)
 	})
@@ -107,36 +114,5 @@ game.initialize = function(){
 	    return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
 
-	/* end of round function */
-	pageLoadHandler(game.page['POST'],function(event){
-		var region = getRandomInt(0,gameBoard.regions.length-1);
-		console.log(region)
-
-		botPlayer.assignDelivery(region,1);
-
-		gameBoard.endRound();
-		//make bot do something here
-		
-		console.log(gameBoard);
-		countDown(timerDurations['POST'],
-			function(time){
-				updateTimer("POST", time);		
-			},
-			function(){
-				cleanup("POST");
-				if ( gameBoard.isGameOver() ){
-					update("END", true);
-					$.mobile.changePage(game.page['END']);
-				}else{
-					update("PRE", true);
-					updateTimer("PRE", timerDurations['PRE']);
-					$.mobile.changePage(game.page['PRE']);
-				}
-			}
-		)
-	})
-
-	pageLoadHandler(game.page['END'],function(event){
-	})
 
 };

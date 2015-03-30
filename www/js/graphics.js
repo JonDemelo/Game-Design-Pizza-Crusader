@@ -33,8 +33,6 @@ update = function(state, isSummaryDisplayed) {
         container = "#voronoiContainer-pre";
     } else if (state === "ROUND") {
         container = "#voronoiContainer-round";
-    } else if (state === "POST") {
-        container = "#voronoiContainer-post";
     } else if (state === "END") {
         container = "#voronoiContainer-end";
     }
@@ -236,8 +234,7 @@ update = function(state, isSummaryDisplayed) {
 
     resources.append("text")
           .text(function(d) {
-              return 1;
-              // TODO: number of player deliveries available
+              return currentPlayer.numResources;
           })
           .attr("margin", 20+"px")
           .attr("height", 30 + "px")
@@ -250,8 +247,7 @@ update = function(state, isSummaryDisplayed) {
 
     resources.append("text")
           .text(function(d) {
-              return 1;
-              // TODO: number of player zones
+              return gameBoard.getOwnedRegions(currentPlayer.id).length
           })
           .attr("height", 30 + "px")
           .attr("width", 30 + "px");
@@ -275,14 +271,6 @@ update = function(state, isSummaryDisplayed) {
 
 
         if(state === "PRE") {
-            popup.append("div")
-              .attr("class", "summary-contents")
-              .html(function(d) {
-                  return "<p>Current Round: " + gameBoard.currentRound +"</p>" 
-                  + "<p>Number of Rounds Left: "+ (gameBoard.numberOfRounds - gameBoard.currentRound) +"</p>"
-                  + "<p>Number of Players: "+ gameBoard.players.length +"</p>";
-              });
-        } else if (state === "POST") {
             popup.append("div")
               .attr("class", "summary-contents")
               .html(function(d) {
@@ -338,8 +326,6 @@ cleanup = function(state) {
         container = "#voronoiContainer-pre";
     } else if (state === "ROUND") {
         container = "#voronoiContainer-round";
-    } else if (state === "POST") {
-        container = "#voronoiContainer-post";
     } else if (state === "END") {
         container = "#voronoiContainer-end";
     }
