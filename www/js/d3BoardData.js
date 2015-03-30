@@ -64,3 +64,8 @@ var graphData = {
 	 28: [29, 24, 23, 27],
 	 29: [24, 28]
 }
+
+
+d3BoardData.forEach(function(d){
+	d.neighbours = graphData[d.id];
+})
