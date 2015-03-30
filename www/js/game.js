@@ -14,7 +14,7 @@ game.currentRound = 0;
 
 timerDurations = {
 	'PRE': 5,
-	'ROUND': 5,
+	'ROUND': 15,
 	'POST': 5
 }
 

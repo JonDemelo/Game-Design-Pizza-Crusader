@@ -8,6 +8,7 @@ var width,
     path,
     drag,
     popup,
+    resources,
     timer;
 
 function polygon(d) {
@@ -60,17 +61,24 @@ update = function(state, isSummaryDisplayed) {
         .attr("height", height);
 
     path = svg.append("g").selectAll("path");
+
     popup = d3.select(container).append("div")
         .classed("tooltip", true)
         .classed(state, true)
         .style("opacity", 0);
 
-  if(state !== "END") {
-      timer = d3.select(container).append("div")
-          .classed("timer", true)
-          .classed(state, true)
-          .style("opacity", 1);
-  }
+    resources = d3.select(container).append("div")
+        .classed("resources", true)
+        .classed(state, true)
+        .style("opacity", 0.8);
+
+    if(state !== "END") {
+        timer = d3.select(container).append("div")
+            .classed("timer", true)
+            .classed(state, true)
+            .style("opacity", 0.8);
+    }
+
 
     path = path.data(voronoi(vertices), polygon);
 
@@ -194,8 +202,39 @@ update = function(state, isSummaryDisplayed) {
           .style("top", height * 0.01 + "px")
           .style("width", 40 + "px")
           .style("height", 40 + "px");
-      }
+    }
 
+    resources.style("left", width * 0.25 + "px")
+        .style("top", height * 0.85 + "px")
+        .style("width", width * 0.5 + "px")
+        .style("height", 40 + "px");
+
+    resources.append("img")
+          .attr("src", "img/splash-pizza-2.PNG")
+          .attr("height", 30 + "px")
+          .attr("width", 30 + "px");
+
+    resources.append("text")
+          .text(function(d) {
+              return 1;
+              // TODO: number of player deliveries available
+          })
+          .attr("margin", 20+"px")
+          .attr("height", 30 + "px")
+          .attr("width", 30 + "px");
+
+    resources.append("img")
+          .attr("src", "img/store-red.png")
+          .attr("height", 30 + "px")
+          .attr("width", 30 + "px");
+
+    resources.append("text")
+          .text(function(d) {
+              return 1;
+              // TODO: number of player zones
+          })
+          .attr("height", 30 + "px")
+          .attr("width", 30 + "px");
 
     if (isSummaryDisplayed && summaryOpened) { // load right off in summary states
         divOpen = true;
