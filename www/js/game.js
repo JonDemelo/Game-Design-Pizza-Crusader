@@ -17,12 +17,12 @@ timerDurations = {
 }
 
 game.newGame = function(){
+	gameBoard = new GameBoard();
+	initializePlayers();
 	game.currentState = 'PRE';
 	update("PRE", true);
 	updateTimer("PRE", timerDurations['PRE']);
 	$.mobile.changePage(game.page['PRE']);
-	gameBoard = new GameBoard();
-	initializePlayers();
 };
 
 /* debug variable */
