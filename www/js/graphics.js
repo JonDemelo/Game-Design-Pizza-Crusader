@@ -56,6 +56,7 @@ update = function(state, isSummaryDisplayed) {
             return d.y * height
         });
 
+
     svg = d3.select(container).append("svg")
         .attr("width", width)
         .attr("height", height);
@@ -94,6 +95,9 @@ update = function(state, isSummaryDisplayed) {
             return 1;
         })
         .data(d3BoardData)
+        .on("mouseover",function(d){
+          console.log(d)
+        })
         .on("click", function(d) {
             // every zone is unfaded
             if (!divOpen && !isSummaryDisplayed) { // if there's a pop up open, 
