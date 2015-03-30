@@ -156,7 +156,7 @@ update = function(state, isSummaryDisplayed) {
                         var owner = gameBoard.getOwner(d.id);
                         var ownerText = " This zone is not owned.";
                         if ( owner != null){
-                          ownerText = "This zone is owned by "+owner.name;
+                          ownerText = "This zone is owned by <font color='"+owner.color+"'>"+owner.name+"</font>";
                         }
 
                         var numDeliveries = gameBoard.getNumberOfDeliveries(d.id)+" items deliviered this turn";
