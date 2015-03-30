@@ -87,8 +87,14 @@ update = function(state, isSummaryDisplayed) {
     path.exit().remove();
 
     path.enter().append("path")
-        .attr("class", function(d, i) {
-            return "q" + (i % 9) + "-9";
+        .attr("fill", function(d,i){
+            var playerId = gameBoard.regions[i].playerId
+            if ( playerId == null ){
+              return "grey"
+            }else{
+              return gameBoard.players[playerId].color
+            }
+
         })
         .classed("unfaded", true)
         .attr("d", polygon)

@@ -22,4 +22,7 @@ function initializePlayers(){
 
 	botPlayer.numResources = 4;
 	currentPlayer.numResources = 4;
+
+	gameBoard.regions[4].playerId = currentPlayer.id;
+	gameBoard.regions[25].playerId = botPlayer.id;
 }
