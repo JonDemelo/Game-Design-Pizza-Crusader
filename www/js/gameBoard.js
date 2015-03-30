@@ -34,6 +34,26 @@ GameBoard.prototype.removeDeliveries = function(playerId, regionId){
 
 }
 
+GameBoard.prototype.canDeliver = function(playerId, regionId){
+	var playerRegions = [];
+	this.regions.forEach(function(region,idx){
+		if ( region.playerId == playerId){
+			playerRegions.push(idx);
+		}
+	});
+
+
+	for(i =0;i<playerRegions.length;i++){
+		var r = playerRegions[i];
+		if( d3BoardData[r].neighbours.indexOf(regionId) > -1 ){
+			return true;
+		}
+	}
+	
+	return false;
+
+}
+
 
 GameBoard.prototype.endRound = function(){
 	//update which region belongs to which player

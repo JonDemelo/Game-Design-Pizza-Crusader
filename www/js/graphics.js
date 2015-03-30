@@ -165,22 +165,24 @@ update = function(state, isSummaryDisplayed) {
                         return [ownerText,numDeliveriesText,productionText].join("<br />");
                     });
 
-                var zoneButtons = popup.append("div")
-                    .attr("class", "zone-buttons");
+                if ( gameBoard.canDeliver(currentPlayer.id,d.id)){
+                    var zoneButtons = popup.append("div")
+                        .attr("class", "zone-buttons");
 
-                zoneButtons.append("button")
-                    .attr("class", "zone-button-deliver")
-                    .on("click", function(e) {
-                        currentPlayer.assignDelivery(d.id);
-                    })
-                    .text("+1");
+                    zoneButtons.append("button")
+                        .attr("class", "zone-button-deliver")
+                        .on("click", function(e) {
+                            currentPlayer.assignDelivery(d.id);
+                        })
+                        .text("+1");
 
-                zoneButtons.append("button")
-                    .attr("class", "zone-button-undeliver")
-                    .on("click", function(e) {
-                        currentPlayer.removeDelivery(d.id);
-                    })
-                    .text("-1");
+                    zoneButtons.append("button")
+                        .attr("class", "zone-button-undeliver")
+                        .on("click", function(e) {
+                            currentPlayer.removeDelivery(d.id);
+                        })
+                        .text("-1");
+                }
 
                 popup.append("button")
                     .attr("class", "summary-button")
