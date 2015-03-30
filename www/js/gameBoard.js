@@ -66,25 +66,32 @@ GameBoard.prototype.endRound = function(){
 	log("end round called");
 	var self = this;
 	this.currentRound++;
+
+	//reset all player's resources to 0
+	this.players.forEach(function(p){
+		p.numResources = 0;
+	});
+
+	//calculate new owners of regions and assign resources
 	this.regions.forEach(function(region){
-		var owner = null;
+		
+		//update owner based on deliveries
+		var owner = region.playerId;
 		var ownerDeliveries = 0;
 		region.incomingDeliveries.forEach(function(delivery,idx){
 			if ( delivery > ownerDeliveries){
 				owner = idx;
 			}
-		})
+		});
 
-		if ( owner == null){
-			return;
-		}
 		region.incomingDeliveries = [];
-
-		if ( region.playerId != null ){
-			self.players[region.playerId].numResources -= region.generator;
-		}
+		//update owner
 		region.playerId = owner;
 
+		if ( region.playerId == null){
+			return;
+		}
+		//assign resources
 		self.players[region.playerId].numResources += region.generator;
 	})
 

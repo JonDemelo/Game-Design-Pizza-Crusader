@@ -79,6 +79,17 @@ game.initialize = function(){
 		currentPlayer.assignDelivery($("#in-deliver-region").val())
 	})
 
+	function botActions(){
+		
+		var botRegions = gameBoard.getOwnedRegions(botPlayer.id);
+		for(i =0;i<botPlayer.numResources;i++){
+			var regionId = botRegions[Math.floor(Math.random()*botRegions.length)];
+			var neighbours = d3BoardData[regionId].neighbours;
+			var deliveryRegion = neighbours[Math.floor(Math.random()*neighbours.length)];
+			botPlayer.assignDelivery(deliveryRegion);
+		}
+	}
+
 	/* ongoing round function */
 	pageLoadHandler(game.page['ROUND'],function(event){
 		
@@ -94,9 +105,7 @@ game.initialize = function(){
 					update("END", true);
 					$.mobile.changePage(game.page['END']);
 				}else{
-					var region = getRandomInt(0,gameBoard.regions.length-1);
-					console.log(region)
-					botPlayer.assignDelivery(region,1);
+					botActions();
 					gameBoard.endRound();
 					update("PRE", true);
 					updateTimer("PRE", timerDurations['PRE']);
