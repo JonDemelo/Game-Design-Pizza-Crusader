@@ -33,8 +33,6 @@ update = function(state, isSummaryDisplayed) {
         container = "#voronoiContainer-pre";
     } else if (state === "ROUND") {
         container = "#voronoiContainer-round";
-    } else if (state === "POST") {
-        container = "#voronoiContainer-post";
     } else if (state === "END") {
         container = "#voronoiContainer-end";
     }
@@ -280,14 +278,6 @@ update = function(state, isSummaryDisplayed) {
                   + "<p>Number of Rounds Left: "+ (gameBoard.numberOfRounds - gameBoard.currentRound) +"</p>"
                   + "<p>Number of Players: "+ gameBoard.players.length +"</p>";
               });
-        } else if (state === "POST") {
-            popup.append("div")
-              .attr("class", "summary-contents")
-              .html(function(d) {
-                  return "<p>Current Round: " + gameBoard.currentRound +"</p>" 
-                  + "<p>Number of Rounds Left: "+ (gameBoard.numberOfRounds - gameBoard.currentRound) +"</p>"
-                  + "<p>Number of Players: "+ gameBoard.players.length +"</p>";
-              });
         } else if (state === "END") {
             popup.append("div")
               .attr("class", "summary-contents")
@@ -336,8 +326,6 @@ cleanup = function(state) {
         container = "#voronoiContainer-pre";
     } else if (state === "ROUND") {
         container = "#voronoiContainer-round";
-    } else if (state === "POST") {
-        container = "#voronoiContainer-post";
     } else if (state === "END") {
         container = "#voronoiContainer-end";
     }
