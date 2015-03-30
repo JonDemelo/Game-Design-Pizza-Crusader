@@ -265,24 +265,59 @@ update = function(state, isSummaryDisplayed) {
 
         popup.append("div")
             .attr("class", "summary-header")
-            .text("SUMMARY");
+            .text(state + " SUMMARY");
 
-        popup.append("div")
-            .attr("class", "summary-contents")
-            .text(function(d) {
-                return "SUMMARY CONTENTS FILL THIS" + "WITH STUFF FROM GAME STATE AND MAKE IT LOOK NICE";
-            });
+        log(gameBoard);
 
-        popup.append("button")
-            .attr("class", "summary-button")
-            .on("click", function(d) {
-                popup.transition().duration(200)
-                    .style("pointer-events", "none")
-                    .style("opacity", 0);
-                divOpen = false;
-                summaryOpened = false;
-            })
-            .text("CLOSE");
+
+        if(state === "PRE") {
+            popup.append("div")
+              .attr("class", "summary-contents")
+              .html(function(d) {
+                  return "<p>Current Round: " + gameBoard.currentRound +"</p>" 
+                  + "<p>Number of Rounds Left: "+ (gameBoard.numberOfRounds - gameBoard.currentRound) +"</p>"
+                  + "<p>Number of Players: "+ gameBoard.players.length +"</p>";
+              });
+        } else if (state === "POST") {
+            popup.append("div")
+              .attr("class", "summary-contents")
+              .html(function(d) {
+                  return "<p>Current Round: " + gameBoard.currentRound +"</p>" 
+                  + "<p>Number of Rounds Left: "+ (gameBoard.numberOfRounds - gameBoard.currentRound) +"</p>"
+                  + "<p>Number of Players: "+ gameBoard.players.length +"</p>";
+              });
+        } else if (state === "END") {
+            popup.append("div")
+              .attr("class", "summary-contents")
+              .html(function(d) {
+                  return "<p>Winner: " + gameBoard.getWinner() +"</p>";
+              });
+        }
+
+        if(state === "END") {
+          popup.append("button")
+              .attr("class", "summary-button")
+              .on("click", function(d) {
+                  popup.transition().duration(200)
+                      .style("pointer-events", "none")
+                      .style("opacity", 0);
+                  divOpen = false;
+                  summaryOpened = false;
+                  $.mobile.changePage("#page-main-menu");
+              })
+              .text("RETURN TO MAIN MENU");
+        } else {
+          popup.append("button")
+              .attr("class", "summary-button")
+              .on("click", function(d) {
+                  popup.transition().duration(200)
+                      .style("pointer-events", "none")
+                      .style("opacity", 0);
+                  divOpen = false;
+                  summaryOpened = false;
+              })
+              .text("CLOSE");
+        }
 
     }
 }
