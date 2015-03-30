@@ -16,9 +16,3 @@ ttext indicating current state
 [2015-03-29, 10:41:59 PM] Jon Demelo: hmm, maybe faking matchmaking
 [2015-03-29, 10:42:08 PM] Jon Demelo: or at least make the menu look more robust
 [2015-03-29, 10:42:24 PM] Ramesh Raj: ok
-[2015-03-29, 10:42:31 PM] Jon Demelo: smarter bot
-[2015-03-29, 10:42:36 PM] Jon Demelo: i.e. not a cheating bot lol
-[2015-03-29, 10:42:38 PM] Jon Demelo: lol
-[2015-03-29, 10:42:39 PM] Ramesh Raj: hahahaha
-[2015-03-29, 10:42:43 PM] Ramesh Raj: yeah
-[2015-03-29, 10:43:02 PM] Jon Demelo: that seems to be it
