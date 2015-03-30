@@ -168,7 +168,7 @@ update = function(state, isSummaryDisplayed) {
                         return [ownerText,numDeliveriesText,productionText].join("<br />");
                     });
 
-                if ( gameBoard.canDeliver(currentPlayer.id,d.id)){
+                if ( state == "ROUND" && gameBoard.canDeliver(currentPlayer.id,d.id)){
                     var zoneButtons = popup.append("div")
                         .attr("class", "zone-buttons");
 
