@@ -290,7 +290,9 @@ update = function(state, isSummaryDisplayed) {
             popup.append("div")
               .attr("class", "summary-contents")
               .html(function(d) {
-                  return "<p>Winner: " + gameBoard.getWinner() +"</p>";
+                log(gameBoard.getWinner());
+                  return "<p>Winner: " + gameBoard.getWinner().name +"</p>"
+                  + "<p>Number of Zones: " + gameBoard.getWinner().numResources +"</p>";
               });
         }
 
