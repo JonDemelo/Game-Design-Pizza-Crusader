@@ -170,12 +170,6 @@ update = function(state, isSummaryDisplayed) {
 
                 zoneButtons.append("button")
                     .attr("class", "zone-button-deliver")
-                    .attr("disabled", function(d) { // TODO: Issue
-                        // should be undisabled when 
-                        // isSummaryDisplayed = false
-                        // but it's not
-                        return isSummaryDisplayed;
-                    })
                     .on("click", function(d) {
                         log("test");
                         // TODO add delivery
@@ -184,11 +178,6 @@ update = function(state, isSummaryDisplayed) {
 
                 zoneButtons.append("button")
                     .attr("class", "zone-button-undeliver")
-                    .attr("disabled", function(d) {
-
-                        // TODO same here
-                        return isSummaryDisplayed;
-                    })
                     .on("click", function(d) {
                         // TODO remove delivery
                     })
