@@ -159,9 +159,10 @@ update = function(state, isSummaryDisplayed) {
                           ownerText = "This zone is owned by <font color='"+owner.color+"'>"+owner.name+"</font>";
                         }
 
-                        var numDeliveries = gameBoard.getNumberOfDeliveries(d.id)+" items deliviered this turn";
+                        var numDeliveriesText = gameBoard.getNumberOfDeliveries(d.id)+" items deliviered this turn";
+                        var productionText = "This zone produces "+gameBoard.regions[d.id].generator+" items";
 
-                        return [ownerText,numDeliveries].join("<br />");
+                        return [ownerText,numDeliveriesText,productionText].join("<br />");
                     });
 
                 var zoneButtons = popup.append("div")
