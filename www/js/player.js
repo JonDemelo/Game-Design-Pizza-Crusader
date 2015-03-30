@@ -1,7 +1,7 @@
 var Player = function(color,name){
 	this.color = color;
 	this.name = name;
-	this.numResources = 1;
+	this.numResources = 2;
 }
 
 Player.prototype.assignDelivery = function(regionId){

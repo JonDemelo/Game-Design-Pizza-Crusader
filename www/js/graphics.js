@@ -157,13 +157,16 @@ update = function(state, isSummaryDisplayed) {
                     .attr("class", "summary-contents")
                     .html(function(g) {
                         var owner = gameBoard.getOwner(d.id);
-                        var ownerText = " This zone is not owned.";
-                        if ( owner != null){
-                          ownerText = "This zone is owned by <font color='"+owner.color+"'>"+owner.name+"</font>";
+                        
+                        if ( owner == null){
+                            owner = "Unowned";
+                        }else{
+                          owner = "<font color='"+owner.color+"'>"+owner.name+"</font>";
                         }
 
-                        var numDeliveriesText = gameBoard.getNumberOfDeliveries(d.id)+" items deliviered this turn";
-                        var productionText = "This zone produces "+gameBoard.regions[d.id].generator+" items";
+                        var ownerText = "<b>Owner:</b> "+owner;
+                        var numDeliveriesText = "<b>Items delivered this turn:</b> <span id='deliveries'>"+gameBoard.getNumberOfDeliveries(d.id)+"</span>";
+                        var productionText = "<b>Production:</b> "+gameBoard.regions[d.id].generator;
 
                         return [ownerText,numDeliveriesText,productionText].join("<br />");
                     });
@@ -176,6 +179,7 @@ update = function(state, isSummaryDisplayed) {
                         .attr("class", "zone-button-deliver")
                         .on("click", function(e) {
                             currentPlayer.assignDelivery(d.id);
+                            $("#deliveries").text(gameBoard.getNumberOfDeliveries(d.id));
                         })
                         .text("+1");
 
@@ -183,6 +187,7 @@ update = function(state, isSummaryDisplayed) {
                         .attr("class", "zone-button-undeliver")
                         .on("click", function(e) {
                             currentPlayer.removeDelivery(d.id);
+                            $("#deliveries").text(gameBoard.getNumberOfDeliveries(d.id));
                         })
                         .text("-1");
                 }

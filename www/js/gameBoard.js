@@ -20,7 +20,12 @@ var GameBoard = function(){
 }
 
 GameBoard.prototype.assignDeliveries = function(playerId,regionId, numDeliveries){
-	this.regions[regionId].incomingDeliveries[playerId] = numDeliveries;
+	var currentNumDeliveriesByPlayer = this.regions[regionId].incomingDeliveries[playerId];
+	if ( currentNumDeliveriesByPlayer == null){
+		currentNumDeliveriesByPlayer = 0;
+	} 
+	currentNumDeliveriesByPlayer++;
+	this.regions[regionId].incomingDeliveries[playerId] = currentNumDeliveriesByPlayer;
 }
 
 GameBoard.prototype.removeDeliveries = function(playerId, regionId){
