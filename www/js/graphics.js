@@ -236,8 +236,7 @@ update = function(state, isSummaryDisplayed) {
 
     resources.append("text")
           .text(function(d) {
-              return 1;
-              // TODO: number of player deliveries available
+              return currentPlayer.numResources;
           })
           .attr("margin", 20+"px")
           .attr("height", 30 + "px")
@@ -250,8 +249,7 @@ update = function(state, isSummaryDisplayed) {
 
     resources.append("text")
           .text(function(d) {
-              return 1;
-              // TODO: number of player zones
+              return gameBoard.getOwnedRegions(currentPlayer.id).length
           })
           .attr("height", 30 + "px")
           .attr("width", 30 + "px");
