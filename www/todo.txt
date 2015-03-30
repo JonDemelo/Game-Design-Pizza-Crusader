@@ -1,14 +1,8 @@
 [2015-03-29, 10:40:10 PM] Ramesh Raj: clear sign that deliveries have been made to the zone
-map needs to update with new zone change during post state
+map
 button issue
-ttext indicating current state
+text indicating current state
 [2015-03-29, 10:40:11 PM] Ramesh Raj: ok
-[2015-03-29, 10:40:24 PM] Jon Demelo: no more post state, so that’s fine
-[2015-03-29, 10:40:31 PM] Jon Demelo: as long as it’s show in pre state
-[2015-03-29, 10:40:34 PM] Ramesh Raj: yeah, but ill just move it to end of round state
-[2015-03-29, 10:40:34 PM] Ramesh Raj: yeah
-[2015-03-29, 10:40:41 PM] Ramesh Raj: cause its not updating right now
-[2015-03-29, 10:40:45 PM] Jon Demelo: oh okay
 [2015-03-29, 10:41:03 PM] Jon Demelo: add to the list text sizing is off on some button labels and such
 [2015-03-29, 10:41:18 PM] Jon Demelo: better looking summary pages
 [2015-03-29, 10:41:23 PM] Jon Demelo: and zone page
