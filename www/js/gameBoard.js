@@ -34,13 +34,19 @@ GameBoard.prototype.removeDeliveries = function(playerId, regionId){
 
 }
 
-GameBoard.prototype.canDeliver = function(playerId, regionId){
+GameBoard.prototype.getOwnedRegions = function(playerId){
 	var playerRegions = [];
 	this.regions.forEach(function(region,idx){
 		if ( region.playerId == playerId){
 			playerRegions.push(idx);
 		}
 	});
+
+	return playerRegions;
+}
+
+GameBoard.prototype.canDeliver = function(playerId, regionId){
+	var playerRegions = this.getOwnedRegions(playerId);
 
 
 	for(i =0;i<playerRegions.length;i++){
