@@ -17,8 +17,8 @@ Player.prototype.removeDelivery = function(regionId){
 }
 
 
-var botPlayer = new Player('red','Bot');
-var currentPlayer = new Player('blue','You');
+var botPlayer = new Player('blue','Bot');
+var currentPlayer = new Player('red','You');
 
 function initializePlayers(){
 	botPlayer.id = gameBoard.players.length;
