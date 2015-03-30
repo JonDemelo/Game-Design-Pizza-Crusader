@@ -1,5 +1,6 @@
-var Player = function(color){
+var Player = function(color,name){
 	this.color = color;
+	this.name = name;
 }
 
 Player.prototype.assignDelivery = function(regionId){
@@ -11,8 +12,8 @@ Player.prototype.assignDelivery = function(regionId){
 }
 
 
-var botPlayer = new Player('red');
-var currentPlayer = new Player('blue');
+var botPlayer = new Player('red','Bot');
+var currentPlayer = new Player('blue','You');
 
 function initializePlayers(){
 	botPlayer.id = gameBoard.players.length;

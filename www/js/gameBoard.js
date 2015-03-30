@@ -97,4 +97,9 @@ GameBoard.prototype.getWinner = function(){
 
 }
 
+GameBoard.prototype.getOwner = function(regionId){
+	var playerId = this.regions[regionId].playerId;
+	return playerId == null? playerId: this.players[playerId]
+}
+
 gameBoard = new GameBoard();

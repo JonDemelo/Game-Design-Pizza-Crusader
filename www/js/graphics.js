@@ -153,8 +153,12 @@ update = function(state, isSummaryDisplayed) {
                 popup.append("div")
                     .attr("class", "summary-contents")
                     .text(function(g) {
-                        return "ZONE CONTENTS FILL THIS" 
-                        + "WITH STUFF FROM ZONE STATE AND MAKE IT LOOK NICE";
+                        var player = gameBoard.getOwner(d.id);
+                        var ownerText = " This zone is not owned.";
+                        if ( player != null){
+                          ownerText = "This zone is owned by "+player.name;
+                        }
+                        return ownerText;
                     });
 
                 var zoneButtons = popup.append("div")
