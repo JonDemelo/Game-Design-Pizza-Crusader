@@ -23,6 +23,16 @@ GameBoard.prototype.assignDeliveries = function(playerId,regionId, numDeliveries
 	this.regions[regionId].incomingDeliveries[playerId] = numDeliveries;
 }
 
+GameBoard.prototype.removeDeliveries = function(playerId, regionId){
+	var incomingDeliveriesArray = this.regions[regionId].incomingDeliveries;
+	if ( incomingDeliveriesArray[playerId] == null){
+		return 0;
+	}
+
+	this.regions[regionId].incomingDeliveries[playerId]--;
+	return 1;
+
+}
 
 
 GameBoard.prototype.endRound = function(){

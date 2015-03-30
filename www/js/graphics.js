@@ -170,16 +170,15 @@ update = function(state, isSummaryDisplayed) {
 
                 zoneButtons.append("button")
                     .attr("class", "zone-button-deliver")
-                    .on("click", function(d) {
-                        log("test");
-                        // TODO add delivery
+                    .on("click", function(e) {
+                        currentPlayer.assignDelivery(d.id);
                     })
                     .text("+1");
 
                 zoneButtons.append("button")
                     .attr("class", "zone-button-undeliver")
-                    .on("click", function(d) {
-                        // TODO remove delivery
+                    .on("click", function(e) {
+                        currentPlayer.removeDelivery(d.id);
                     })
                     .text("-1");
 
