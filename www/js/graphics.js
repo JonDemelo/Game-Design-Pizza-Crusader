@@ -135,12 +135,13 @@ update = function(state, isSummaryDisplayed) {
 
                 popup.append("div")
                     .attr("class", "summary-header")
-                    .text("ZONE");
+                    .text("ZONE " + d.id);
 
                 popup.append("div")
                     .attr("class", "summary-contents")
-                    .text(function(d) {
-                        return "ZONE CONTENTS FILL THIS" + "WITH STUFF FROM ZONE STATE AND MAKE IT LOOK NICE";
+                    .text(function(g) {
+                        return "ZONE CONTENTS FILL THIS" 
+                        + "WITH STUFF FROM ZONE STATE AND MAKE IT LOOK NICE";
                     });
 
                 var zoneButtons = popup.append("div")
@@ -191,10 +192,12 @@ update = function(state, isSummaryDisplayed) {
 
     path.order();
 
-    timer.style("left", width * 0.01 + "px")
-        .style("top", height * 0.01 + "px")
-        .style("width", 40 + "px")
-        .style("height", 40 + "px");
+    if(state !== "END") {
+      timer.style("left", width * 0.01 + "px")
+          .style("top", height * 0.01 + "px")
+          .style("width", 40 + "px")
+          .style("height", 40 + "px");
+      }
 
 
     if (isSummaryDisplayed && summaryOpened) { // load right off in summary states
