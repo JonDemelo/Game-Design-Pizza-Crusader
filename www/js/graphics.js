@@ -152,13 +152,16 @@ update = function(state, isSummaryDisplayed) {
 
                 popup.append("div")
                     .attr("class", "summary-contents")
-                    .text(function(g) {
-                        var player = gameBoard.getOwner(d.id);
+                    .html(function(g) {
+                        var owner = gameBoard.getOwner(d.id);
                         var ownerText = " This zone is not owned.";
-                        if ( player != null){
-                          ownerText = "This zone is owned by "+player.name;
+                        if ( owner != null){
+                          ownerText = "This zone is owned by "+owner.name;
                         }
-                        return ownerText;
+
+                        var numDeliveries = gameBoard.getNumberOfDeliveries(d.id)+" items deliviered this turn";
+
+                        return [ownerText,numDeliveries].join("<br />");
                     });
 
                 var zoneButtons = popup.append("div")

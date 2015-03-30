@@ -99,7 +99,14 @@ GameBoard.prototype.getWinner = function(){
 
 GameBoard.prototype.getOwner = function(regionId){
 	var playerId = this.regions[regionId].playerId;
-	return playerId == null? playerId: this.players[playerId]
+	return playerId == null? null: this.players[playerId]
+}
+
+GameBoard.prototype.getNumberOfDeliveries = function(regionId){
+	var incomingDeliveriesArray = this.regions[regionId].incomingDeliveries;
+	var incomingDeliveries = incomingDeliveriesArray[currentPlayer.id];
+
+	return incomingDeliveries == null? 0: incomingDeliveries;
 }
 
 gameBoard = new GameBoard();
