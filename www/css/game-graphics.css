@@ -13,10 +13,6 @@ path {
   stroke: #fff;
 }
 
-path:first-child {
-  fill: yellow !important;
-}
-
 circle {
   fill: #000;
   pointer-events: none;
