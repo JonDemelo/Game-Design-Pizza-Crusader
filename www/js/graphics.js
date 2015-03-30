@@ -55,6 +55,7 @@ update = function(state, isSummaryDisplayed) {
             return d.y * height
         });
 
+
     svg = d3.select(container).append("svg")
         .attr("width", width)
         .attr("height", height);
