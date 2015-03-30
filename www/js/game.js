@@ -14,12 +14,14 @@ game.currentRound = 0;
 
 timerDurations = {
 	'PRE': 5,
-	'ROUND': 15,
+	'ROUND': 5,
 	'POST': 5
 }
 
 game.newGame = function(){
 	game.currentState = 'PRE';
+	update("PRE", true);
+	updateTimer("PRE", timerDurations['PRE']);
 	$.mobile.changePage(game.page['PRE']);
 	gameBoard = new GameBoard();
 	initializePlayers();
@@ -62,15 +64,14 @@ game.initialize = function(){
 	
 	/* round start function */
 	pageLoadHandler(game.page['PRE'],function(event){
-		// initializeGraphics();
-		update("PRE", true);
-		updateTimer("PRE", timerDurations['PRE']);
 		countDown(timerDurations['PRE'],
 			function(time){
 				updateTimer("PRE", time);	
 			},
 			function(){
 				cleanup("PRE");
+				update("ROUND", false);
+				updateTimer("ROUND", timerDurations['ROUND']);
 				$.mobile.changePage(game.page['ROUND']);
 			}
 		)
@@ -82,8 +83,6 @@ game.initialize = function(){
 
 	/* ongoing round function */
 	pageLoadHandler(game.page['ROUND'],function(event){
-		update("ROUND", false);
-		updateTimer("ROUND", timerDurations['ROUND']);
 		// $("#round-current-round").text(gameBoard.currentRound);
 		countDown(timerDurations['ROUND'],
 			function(time){
@@ -93,6 +92,8 @@ game.initialize = function(){
 			},
 			function(){
 				cleanup("ROUND");
+				update("POST", true);
+				updateTimer("POST", timerDurations['POST']);
 				$.mobile.changePage(game.page['POST']);
 			}
 		)
@@ -108,8 +109,6 @@ game.initialize = function(){
 
 	/* end of round function */
 	pageLoadHandler(game.page['POST'],function(event){
-		update("POST", true);
-		updateTimer("POST", timerDurations['POST']);
 		var region = getRandomInt(0,gameBoard.regions.length-1);
 		console.log(region)
 
@@ -121,15 +120,16 @@ game.initialize = function(){
 		console.log(gameBoard);
 		countDown(timerDurations['POST'],
 			function(time){
-				updateTimer("POST", time);
-				// $("#post-round-timer").text(time);		
+				updateTimer("POST", time);		
 			},
 			function(){
-				//TODO: check if any winners
 				cleanup("POST");
 				if ( gameBoard.isGameOver() ){
+					update("END", true);
 					$.mobile.changePage(game.page['END']);
 				}else{
+					update("PRE", true);
+					updateTimer("PRE", timerDurations['PRE']);
 					$.mobile.changePage(game.page['PRE']);
 				}
 			}
@@ -137,10 +137,6 @@ game.initialize = function(){
 	})
 
 	pageLoadHandler(game.page['END'],function(event){
-		update("END", true);
-		// var winner =gameBoard.getWinner();
-		// $("#winner").text(winner); 
-
 	})
 
 };

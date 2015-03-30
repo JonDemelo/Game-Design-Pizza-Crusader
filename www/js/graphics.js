@@ -9,7 +9,8 @@ var width,
     drag,
     popup,
     resources,
-    timer;
+    timer,
+    exit;
 
 function polygon(d) {
     if (typeof d === 'undefined') {
@@ -81,6 +82,10 @@ update = function(state, isSummaryDisplayed) {
             .style("opacity", 0.8);
     }
 
+    exit = d3.select(container).append("button")
+            .classed("exit", true)
+            .classed(state, true)
+            .style("opacity", 0.8);
 
     path = path.data(voronoi(vertices), polygon);
 
@@ -210,6 +215,15 @@ update = function(state, isSummaryDisplayed) {
           .style("height", 40 + "px");
     }
 
+    exit.style("right", width * 0.01 + "px")
+          .style("top", height * 0.01 + "px")
+          .style("width", 40 + "px")
+          .style("height", 40 + "px")
+          .on("click", function(d) {
+              $.mobile.changePage("#page-main-menu");
+          })
+          .text("X");
+
     resources.style("left", width * 0.25 + "px")
         .style("top", height * 0.85 + "px")
         .style("width", width * 0.5 + "px")
@@ -280,7 +294,9 @@ update = function(state, isSummaryDisplayed) {
             popup.append("div")
               .attr("class", "summary-contents")
               .html(function(d) {
-                  return "<p>Winner: " + gameBoard.getWinner() +"</p>";
+                log(gameBoard.getWinner());
+                  return "<p>Winner: " + gameBoard.getWinner().name +"</p>"
+                  + "<p>Number of Zones: " + gameBoard.getWinner().numResources +"</p>";
               });
         }
 
@@ -293,6 +309,7 @@ update = function(state, isSummaryDisplayed) {
                       .style("opacity", 0);
                   divOpen = false;
                   summaryOpened = false;
+                  cleanup(state);
                   $.mobile.changePage("#page-main-menu");
               })
               .text("RETURN TO MAIN MENU");
