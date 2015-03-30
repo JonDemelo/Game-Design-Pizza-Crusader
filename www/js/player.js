@@ -1,6 +1,7 @@
 var Player = function(color,name){
 	this.color = color;
 	this.name = name;
+	this.numResources = 1;
 }
 
 Player.prototype.assignDelivery = function(regionId){
@@ -9,6 +10,10 @@ Player.prototype.assignDelivery = function(regionId){
 	}else{
 		alert("you don't have enough resources");
 	}
+}
+
+Player.prototype.removeDelivery = function(regionId){
+	this.numResources += gameBoard.removeDeliveries(this.id,regionId);
 }
 
 
@@ -20,9 +25,6 @@ function initializePlayers(){
 	gameBoard.players.push(botPlayer);
 	currentPlayer.id = gameBoard.players.length;
 	gameBoard.players.push(currentPlayer);
-
-	botPlayer.numResources = 4;
-	currentPlayer.numResources = 4;
 
 	gameBoard.regions[4].playerId = currentPlayer.id;
 	gameBoard.regions[25].playerId = botPlayer.id;

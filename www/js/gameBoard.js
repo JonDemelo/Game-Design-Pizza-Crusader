@@ -23,6 +23,36 @@ GameBoard.prototype.assignDeliveries = function(playerId,regionId, numDeliveries
 	this.regions[regionId].incomingDeliveries[playerId] = numDeliveries;
 }
 
+GameBoard.prototype.removeDeliveries = function(playerId, regionId){
+	var incomingDeliveriesArray = this.regions[regionId].incomingDeliveries;
+	if ( incomingDeliveriesArray[playerId] == null){
+		return 0;
+	}
+
+	this.regions[regionId].incomingDeliveries[playerId]--;
+	return 1;
+
+}
+
+GameBoard.prototype.canDeliver = function(playerId, regionId){
+	var playerRegions = [];
+	this.regions.forEach(function(region,idx){
+		if ( region.playerId == playerId){
+			playerRegions.push(idx);
+		}
+	});
+
+
+	for(i =0;i<playerRegions.length;i++){
+		var r = playerRegions[i];
+		if( d3BoardData[r].neighbours.indexOf(regionId) > -1 ){
+			return true;
+		}
+	}
+	
+	return false;
+
+}
 
 
 GameBoard.prototype.endRound = function(){
