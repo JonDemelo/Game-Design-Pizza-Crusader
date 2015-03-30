@@ -13,9 +13,9 @@ game.currentRound = 0;
 
 
 timerDurations = {
-	'PRE': 5,
-	'ROUND': 5,
-	'POST': 5
+	'PRE': 7,
+	'ROUND': 20,
+	'POST': 7
 }
 
 game.newGame = function(){

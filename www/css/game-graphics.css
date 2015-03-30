@@ -156,14 +156,14 @@ z-index : 1;
 }
 
 .summary-button {
-  position: absolute;
+  /*position: absolute;*/
     bottom: 5%; 
-    left: 10%;
-    font-size: 20pt;
-    height: 50px;
-    width: 80%;
-    /*display: block;*/
-    margin: 0 auto;
+/*    left: 10%;*/
+/*    font-size: 20pt;
+    height: 50px;*/
+/*    min-width: 50px;*/
+    margin-top: auto;
+    /*margin: 0 auto;*/
 }
 
 .zone-buttons {
