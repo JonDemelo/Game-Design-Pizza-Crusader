@@ -42,6 +42,7 @@ update = function(state, isSummaryDisplayed) {
     width = $(document).width();
     height = $(document).height();
 
+
     vertices = d3BoardData;
 
     voronoi = d3.geom.voronoi()
@@ -95,9 +96,6 @@ update = function(state, isSummaryDisplayed) {
             return 1;
         })
         .data(d3BoardData)
-        .on("mouseover",function(d){
-          console.log(d)
-        })
         .on("click", function(d) {
             // every zone is unfaded
             if (!divOpen && !isSummaryDisplayed) { // if there's a pop up open, 
