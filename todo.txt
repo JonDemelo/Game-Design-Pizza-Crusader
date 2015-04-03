@@ -6,8 +6,6 @@ the map needs to update with new zone changes during the post state
 there’s a button issue that’s been plaguing me, sometimes the buttons use one style, somethimes another
 also there’s some text size issues in the summaries
 
-so there needs to be some text somewhere saying what state the game is in
-
 
 text sizing is off on some button labels and such
 
@@ -17,16 +15,7 @@ and zone page
 
 like stylistically
 
-hmm, maybe faking matchmaking
 
 or at least make the menu look more robust
 
-fix bot so he isnt a cheating pos
 
-bot names:
-
-ZingBot
-MarshaBot
-ChenBot
-ArisaBot
-DrWillBot
