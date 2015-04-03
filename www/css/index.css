@@ -201,3 +201,12 @@ position: fixed;
     display:none;
 }
 
+.center-img{
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#matchmaking-loading{
+    text-align: center;
+}
