@@ -174,6 +174,7 @@ update = function(state, isSummaryDisplayed) {
                         .on("click", function(e) {
                             currentPlayer.assignDelivery(d.id);
                             $("#deliveries").text(gameBoard.getNumberOfDeliveries(d.id));
+                            $("#resource-bar-text").text(currentPlayer.numResources);
                         })
                         .text("+1");
 
@@ -182,6 +183,7 @@ update = function(state, isSummaryDisplayed) {
                         .on("click", function(e) {
                             currentPlayer.removeDelivery(d.id);
                             $("#deliveries").text(gameBoard.getNumberOfDeliveries(d.id));
+                            $("#resource-bar-text").text(currentPlayer.numResources);
                         })
                         .text("-1");
                 }
@@ -255,6 +257,7 @@ update = function(state, isSummaryDisplayed) {
           .text(function(d) {
               return currentPlayer.numResources;
           })
+          .attr("id","resource-bar-text")
           .attr("margin", 20+"px")
           .attr("height", 30 + "px")
           .attr("width", 30 + "px");
