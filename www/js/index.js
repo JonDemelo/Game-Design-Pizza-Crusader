@@ -30,24 +30,16 @@ $(document).on("ready",function(){
         game.paused = !game.paused;
     })
 
-/*    var newBoardData = []
-    d3BoardData.forEach(function(d){
-        newBoardData.push({id:d.id,x:Number(d.x/1080).toFixed(2),y:Number(d.y/1920).toFixed(2)})
-    })
-
-    console.log(newBoardData);
-    console.log(JSON.stringify(newBoardData));*/
 
 })
 
-var app = { // TODO: Any easier injection development strategies?
+var app = { 
 
 
     // Application Constructor
     initialize: function() {
         log("initialize");
         app.hideSplash();
-        // this.renderSplashView();
     },
 
     hideSplash: function() {
