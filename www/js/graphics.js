@@ -210,12 +210,17 @@ update = function(state, isSummaryDisplayed) {
         .attr("fill", function(d,i){
             playerId = gameBoard.regions[i].playerId;
 
+            tempColor = null;
             if (playerId === null){
-              return "grey"
+              tempColor = "grey";
             }else{
-              return gameBoard.players[playerId].color
+              tempColor = gameBoard.players[playerId].color;
             }
 
+            tempNum = gameBoard.getNumberOfDeliveries(d.id);
+
+            tempColor = d3.rgb(tempColor).darker(tempNum);
+            return tempColor;
         })
         .classed("unfaded", true);
 
