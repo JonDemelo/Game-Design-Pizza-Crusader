@@ -296,9 +296,9 @@ update = function(state, isSummaryDisplayed) {
             popup.append("div")
               .attr("class", "summary-contents")
               .html(function(d) {
-                  return "<p>Current Round: " + gameBoard.currentRound +"</p>" 
-                  + "<p>Number of Rounds Left: "+ (gameBoard.numberOfRounds - gameBoard.currentRound) +"</p>"
-                  + "<p>Number of Players: "+ gameBoard.players.length +"</p>";
+                  return "<p><b>Current Round:</b> " + gameBoard.currentRound +"</p>" 
+                  + "<p><b>Number of Rounds Left:</b> "+ (gameBoard.numberOfRounds - gameBoard.currentRound) +"</p>"
+                  + "<p><b>Number of Players:</b> "+ gameBoard.players.length +"</p>";
               });
         } else if (state === "END") {
             popup.append("div")
