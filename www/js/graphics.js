@@ -189,7 +189,7 @@ update = function(state, isSummaryDisplayed) {
                 }
 
                 popup.append("button")
-                    .attr("class", "summary-button")
+                    .attr("class", "ui-btn ui-shadow ui-corner-all summary-button")
                     .on("click", function(d) {
                         popup.transition().duration(200)
                             .style("pointer-events", "none")
@@ -325,7 +325,7 @@ update = function(state, isSummaryDisplayed) {
               .text("RETURN TO MAIN MENU");
         } else {
           popup.append("button")
-              .attr("class", "summary-button")
+              .attr("class", "ui-btn ui-shadow ui-corner-all summary-button")
               .on("click", function(d) {
                   popup.transition().duration(200)
                       .style("pointer-events", "none")
