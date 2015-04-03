@@ -1,5 +1,3 @@
-zones need to have visual representation on their current deliveries from the map.
-
 also there’s some text size issues in the summaries
 
 text sizing is off on some button labels and such

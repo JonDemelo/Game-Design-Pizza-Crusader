@@ -176,6 +176,26 @@ update = function(state, isSummaryDisplayed) {
                         .attr("class", "zone-button-deliver")
                         .on("click", function(e) {
                             currentPlayer.assignDelivery(d.id);
+
+                            tempNum = gameBoard.getNumberOfDeliveries(d.id);
+                            if (tempNum > 0) {
+                              d3.select("#path" + d.id).attr("fill", function() {
+                                return "yellow"; 
+                              });
+                            } else {
+                              playerId = gameBoard.regions[d.id].playerId;
+                              
+                              if (playerId === null){
+                                d3.select("#path" + d.id).attr("fill", function() {
+                                  return "grey"; 
+                                });
+                              }else{
+                                d3.select("#path" + d.id).attr("fill", function() {
+                                  return gameBoard.players[playerId].color;
+                                });
+                              }
+                            }
+
                             $("#deliveries").text(gameBoard.getNumberOfDeliveries(d.id));
                             $("#resource-bar-text").text(currentPlayer.numResources);
                             $(".zone-button-undeliver").prop("disabled",false);
@@ -189,6 +209,27 @@ update = function(state, isSummaryDisplayed) {
                         .attr("class", "zone-button-undeliver")
                         .on("click", function(e) {
                             currentPlayer.removeDelivery(d.id);
+
+                            tempNum = gameBoard.getNumberOfDeliveries(d.id);
+                            if (tempNum > 0) {
+                              d3.select("#path" + d.id).attr("fill", function() {
+                                return "yellow"; 
+                              });
+                              log(d3.select("#path" + d.id));
+                            } else {
+                              playerId = gameBoard.regions[d.id].playerId;
+                              
+                              if (playerId === null){
+                                d3.select("#path" + d.id).attr("fill", function() {
+                                  return "grey"; 
+                                });
+                              }else{
+                                d3.select("#path" + d.id).attr("fill", function() {
+                                  return gameBoard.players[playerId].color;
+                                });
+                              }
+                            }
+
                             var numDeliveries = gameBoard.getNumberOfDeliveries(d.id);
                             $("#deliveries").text(numDeliveries);
                             $("#resource-bar-text").text(currentPlayer.numResources);
@@ -231,11 +272,10 @@ update = function(state, isSummaryDisplayed) {
             playerId = gameBoard.regions[i].playerId;
 
             if (playerId === null){
-              return "grey"
+              return "grey";
             }else{
-              return gameBoard.players[playerId].color
+              return gameBoard.players[playerId].color;
             }
-
         })
         .classed("unfaded", true);
 
