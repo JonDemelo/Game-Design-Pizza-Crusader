@@ -60,9 +60,19 @@
                 <a href="#page-main-menu" class="ui-btn ui-icon-back ui-btn-icon-left">Back</a>
                 <h1>Matchmaking</h1>
             </div>
-
             <div role="main" class="ui-content">
-                <button id="play-game">Play game!</button>
+                <div id="matchmaking">
+                    <div id="matchmaking-loading">
+                        Looking for opponents....
+                        <img src="css/images/ajax-loader.gif"/>
+                    </div>
+                    <div id="matchmaking-div" class="hidden">
+                        <h3>You have been matched with:</h3>
+                        <ol id="matchmaking-list" data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">
+                        </ol>
+                    </div>
+                </div>
+                <button id="play-game" disabled>Play game!</button>
             </div>
         </div>
 

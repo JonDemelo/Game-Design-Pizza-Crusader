@@ -12,9 +12,11 @@ game.currentRound = 0;
 
 
 timerDurations = {
+	'LOAD': 1,
 	'PRE': 10,
 	'ROUND': 20,
 }
+var botNames = ['Chenbot', 'Marsha', 'Zingbot'];
 
 game.newGame = function(){
 	gameBoard = new GameBoard();
@@ -56,6 +58,25 @@ game.initialize = function(){
 
 	$("#play-game").click(function(){
 		game.newGame();
+	})
+
+	pageLoadHandler(game.page['LOAD'],function(event){
+		$("#play-game").prop("disabled",true)
+		$("#matchmaking-loading").removeClass("hidden")
+		$("#matchmaking-div").addClass("hidden");
+		countDown(timerDurations['LOAD'],
+			function(time){
+			},
+			function(){
+				//get bot name
+				var botName = botNames[Math.floor(Math.random()*botNames.length)];
+				botPlayer.name = botName;
+				$("#matchmaking-list").html("<li class='ui-li ui-li-static ui-btn-up-c ui-corner-top'>"+botName+"</li>");
+				$("#matchmaking-loading").addClass("hidden")
+				$("#matchmaking-div").removeClass("hidden");
+				$("#play-game").prop("disabled",false)
+			}
+		)
 	})
 
 
