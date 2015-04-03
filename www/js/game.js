@@ -124,13 +124,13 @@ game.initialize = function(){
 			},
 			function(){
 				cleanup("ROUND");
+				botActions();
+				gameBoard.endRound();
 				if ( gameBoard.isGameOver() ){
 					update("END", true);
 					game.currentState = 'END'
 					$.mobile.changePage(game.page['END']);
 				}else{
-					botActions();
-					gameBoard.endRound();
 					update("PRE", true);
 					updateTimer("PRE", timerDurations['PRE']);
 					$.mobile.changePage(game.page['PRE']);
