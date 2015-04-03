@@ -56,6 +56,10 @@ update = function(state, isSummaryDisplayed) {
             return d.y * height
         });
 
+    var cornerPoints = voronoi(vertices);
+    //generate neighbours graph
+    generateNeighbourGraph(cornerPoints);
+    
 
     svg = d3.select(container).append("svg")
         .attr("width", width)
@@ -86,6 +90,8 @@ update = function(state, isSummaryDisplayed) {
             .style("opacity", 0.8);
 
     path = path.data(voronoi(vertices), polygon);
+
+
 
     path.exit().remove();
 

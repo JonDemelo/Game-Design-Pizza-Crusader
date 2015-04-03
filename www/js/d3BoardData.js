@@ -31,7 +31,7 @@ var d3BoardData = [
     {id: 29, x: 0.85, y: 0.99}
 ]
 
-
+/*
 var graphData = {
 	 0: [5, 1],
 	 1: [0, 5, 6, 7, 2],
@@ -68,4 +68,40 @@ var graphData = {
 
 d3BoardData.forEach(function(d){
 	d.neighbours = graphData[d.id];
-})
+})*/
+
+var neighboursGenerated = false;
+
+function generateNeighbourGraph(allCornerPoints){
+	if ( neighboursGenerated ){
+		return;
+	}
+	allCornerPoints.forEach(function(zoneCornerPoints,idx){
+		var neighbours = [];
+		//loop through the zone's corner points
+		zoneCornerPoints.forEach(function(cornerPoint){
+			//loop through other zones and find zones that have same corner point
+			allCornerPoints.forEach(function(zcPoints2,idx2){
+				if ( idx2 == idx){
+					return;
+				}
+
+				zcPoints2.forEach(function(cp2){
+					if ( cp2[0] == cornerPoint[0] && cp2[1] == cornerPoint[1]){
+						neighbours.push(idx2);
+						found = true;
+						return;
+					}
+				})
+			})
+			
+		})
+		var uniqueNeighbours = []
+		$.each(neighbours, function(i, el){
+    		if($.inArray(el, uniqueNeighbours) === -1) uniqueNeighbours.push(el);
+		});
+		d3BoardData[idx].neighbours = uniqueNeighbours;
+	})
+
+	neighboursGenerated = true;
+}
