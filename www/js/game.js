@@ -105,7 +105,8 @@ game.initialize = function(){
 	function botActions(){
 		
 		var botRegions = gameBoard.getOwnedRegions(botPlayer.id);
-		for(i =0;i<botPlayer.numResources;i++){
+		var numResources = botPlayer.numResources;
+		for(i =0;i<numResources;i++){
 			var regionId = botRegions[Math.floor(Math.random()*botRegions.length)];
 			var neighbours = d3BoardData[regionId].neighbours;
 			var deliveryRegion = neighbours[Math.floor(Math.random()*neighbours.length)];
