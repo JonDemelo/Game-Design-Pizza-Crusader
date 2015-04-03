@@ -38,10 +38,10 @@ game.initialize = function(){
 	function pageLoadHandler(id,callback){
 		$(document).on("pageshow",id,callback);
 	}
-
+	var interval = null;
 	function countDown(startTime,callback,endCallback){
 		var timeRemaining = startTime;
-		var interval = setInterval(function(){
+		interval = setInterval(function(){
 			callback(timeRemaining);
 
 			if( !game.paused ){
@@ -54,6 +54,10 @@ game.initialize = function(){
 
 
 		},1000)
+	}
+
+	game.endTimer = function(){
+		clearInterval(interval)
 	}
 
 	$("#play-game").click(function(){

@@ -230,6 +230,7 @@ update = function(state, isSummaryDisplayed) {
           .style("width", 40 + "px")
           .style("height", 40 + "px")
           .on("click", function(d) {
+              game.endTimer();
               $.mobile.changePage("#page-main-menu");
           })
           .text("X");
