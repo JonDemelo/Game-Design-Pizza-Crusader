@@ -61,6 +61,7 @@ game.initialize = function(){
 	})
 
 	pageLoadHandler(game.page['LOAD'],function(event){
+		game.currentState = 'LOAD';
 		$("#play-game").prop("disabled",true)
 		$("#matchmaking-loading").removeClass("hidden")
 		$("#matchmaking-div").addClass("hidden");
@@ -83,6 +84,7 @@ game.initialize = function(){
 	
 	/* round start function */
 	pageLoadHandler(game.page['PRE'],function(event){
+		game.currentState = 'PRE'
 		countDown(timerDurations['PRE'],
 			function(time){
 				updateTimer("PRE", time);	
@@ -113,9 +115,8 @@ game.initialize = function(){
 
 	/* ongoing round function */
 	pageLoadHandler(game.page['ROUND'],function(event){
+		game.currentState = 'ROUND'
 		
-		//bot actions
-
 		countDown(timerDurations['ROUND'],
 			function(time){
 				updateTimer("ROUND", time);	
@@ -124,6 +125,7 @@ game.initialize = function(){
 				cleanup("ROUND");
 				if ( gameBoard.isGameOver() ){
 					update("END", true);
+					game.currentState = 'END'
 					$.mobile.changePage(game.page['END']);
 				}else{
 					botActions();
