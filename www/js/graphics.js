@@ -175,6 +175,10 @@ update = function(state, isSummaryDisplayed) {
                             currentPlayer.assignDelivery(d.id);
                             $("#deliveries").text(gameBoard.getNumberOfDeliveries(d.id));
                             $("#resource-bar-text").text(currentPlayer.numResources);
+                            $(".zone-button-undeliver").prop("disabled",false);
+                            if(currentPlayer.numResources <= 0){
+                              $(this).prop("disabled",true);
+                            }
                         })
                         .text("+1");
 
@@ -182,10 +186,26 @@ update = function(state, isSummaryDisplayed) {
                         .attr("class", "zone-button-undeliver")
                         .on("click", function(e) {
                             currentPlayer.removeDelivery(d.id);
-                            $("#deliveries").text(gameBoard.getNumberOfDeliveries(d.id));
+                            var numDeliveries = gameBoard.getNumberOfDeliveries(d.id);
+                            $("#deliveries").text(numDeliveries);
                             $("#resource-bar-text").text(currentPlayer.numResources);
+                            $(".zone-button-deliver").prop("disabled",false);
+                            if(numDeliveries <= 0){
+                              $(this).prop("disabled",true);
+                            }
                         })
                         .text("-1");
+
+                    //disable +1 if not enough resources
+                    if(currentPlayer.numResources <= 0 ){
+                      $(".zone-button-deliver").prop("disabled",true);
+                    }
+
+                    if( gameBoard.getNumberOfDeliveries(d.id) <= 0){
+                      $(".zone-button-undeliver").prop("disabled",true);
+                    }
+
+
                 }
 
                 popup.append("button")
