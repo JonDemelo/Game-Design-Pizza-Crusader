@@ -38,10 +38,10 @@ game.initialize = function(){
 	function pageLoadHandler(id,callback){
 		$(document).on("pageshow",id,callback);
 	}
-
+	var interval = null;
 	function countDown(startTime,callback,endCallback){
 		var timeRemaining = startTime;
-		var interval = setInterval(function(){
+		interval = setInterval(function(){
 			callback(timeRemaining);
 
 			if( !game.paused ){
@@ -54,6 +54,10 @@ game.initialize = function(){
 
 
 		},1000)
+	}
+
+	game.endTimer = function(){
+		clearInterval(interval)
 	}
 
 	$("#play-game").click(function(){
@@ -105,7 +109,8 @@ game.initialize = function(){
 	function botActions(){
 		
 		var botRegions = gameBoard.getOwnedRegions(botPlayer.id);
-		for(i =0;i<botPlayer.numResources;i++){
+		var numResources = botPlayer.numResources;
+		for(i =0;i<numResources;i++){
 			var regionId = botRegions[Math.floor(Math.random()*botRegions.length)];
 			var neighbours = d3BoardData[regionId].neighbours;
 			var deliveryRegion = neighbours[Math.floor(Math.random()*neighbours.length)];
@@ -123,13 +128,13 @@ game.initialize = function(){
 			},
 			function(){
 				cleanup("ROUND");
+				botActions();
+				gameBoard.endRound();
 				if ( gameBoard.isGameOver() ){
 					update("END", true);
 					game.currentState = 'END'
 					$.mobile.changePage(game.page['END']);
 				}else{
-					botActions();
-					gameBoard.endRound();
 					update("PRE", true);
 					updateTimer("PRE", timerDurations['PRE']);
 					$.mobile.changePage(game.page['PRE']);
