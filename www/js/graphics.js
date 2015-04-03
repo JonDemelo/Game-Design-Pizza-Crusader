@@ -177,6 +177,7 @@ update = function(state, isSummaryDisplayed) {
                         .on("click", function(e) {
                             currentPlayer.assignDelivery(d.id);
                             $("#deliveries").text(gameBoard.getNumberOfDeliveries(d.id));
+                            $("#resource-bar-text").text(currentPlayer.numResources);
                         })
                         .text("+1");
 
@@ -185,12 +186,13 @@ update = function(state, isSummaryDisplayed) {
                         .on("click", function(e) {
                             currentPlayer.removeDelivery(d.id);
                             $("#deliveries").text(gameBoard.getNumberOfDeliveries(d.id));
+                            $("#resource-bar-text").text(currentPlayer.numResources);
                         })
                         .text("-1");
                 }
 
                 popup.append("button")
-                    .attr("class", "summary-button")
+                    .attr("class", "ui-btn ui-shadow ui-corner-all summary-button")
                     .on("click", function(d) {
                         popup.transition().duration(200)
                             .style("pointer-events", "none")
@@ -231,6 +233,7 @@ update = function(state, isSummaryDisplayed) {
           .style("width", 40 + "px")
           .style("height", 40 + "px")
           .on("click", function(d) {
+              game.endTimer();
               $.mobile.changePage("#page-main-menu");
           })
           .text("X");
@@ -257,6 +260,7 @@ update = function(state, isSummaryDisplayed) {
           .text(function(d) {
               return currentPlayer.numResources;
           })
+          .attr("id","resource-bar-text")
           .attr("margin", 20+"px")
           .attr("height", 30 + "px")
           .attr("width", 30 + "px");
@@ -324,7 +328,7 @@ update = function(state, isSummaryDisplayed) {
               .text("RETURN TO MAIN MENU");
         } else {
           popup.append("button")
-              .attr("class", "summary-button")
+              .attr("class", "ui-btn ui-shadow ui-corner-all summary-button")
               .on("click", function(d) {
                   popup.transition().duration(200)
                       .style("pointer-events", "none")

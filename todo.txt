@@ -1,14 +1,7 @@
 zones need to have visual representation on their current deliveries from the map.
 
-there’s a button issue that’s been plaguing me, sometimes the buttons use one style, somethimes another
-
 also there’s some text size issues in the summaries
 
 text sizing is off on some button labels and such
 better looking summary pages
 and zone page like stylistically
-
-center matchmaking stuff.
-
-resource bar's numbers are sometimes off.
-
