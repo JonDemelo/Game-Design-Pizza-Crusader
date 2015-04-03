@@ -7,7 +7,3 @@ also there’s some text size issues in the summaries
 text sizing is off on some button labels and such
 better looking summary pages
 and zone page like stylistically
-
-
-resource bar's numbers are sometimes off.
-
