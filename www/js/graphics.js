@@ -148,7 +148,7 @@ update = function(state, isSummaryDisplayed) {
 
                 popup.append("div")
                     .attr("class", "summary-header")
-                    .text("ZONE " + d.id);
+                    .text("FRANCHISE REGION " + d.id + 1);
 
                 popup.append("div")
                     .attr("class", "summary-contents")
@@ -156,14 +156,14 @@ update = function(state, isSummaryDisplayed) {
                         var owner = gameBoard.getOwner(d.id);
                         
                         if ( owner == null){
-                            owner = "Unowned";
+                            owner = "Independant Franchise";
                         }else{
                           owner = "<font color='"+owner.color+"'>"+owner.name+"</font>";
                         }
 
-                        var ownerText = "<b>Owner:</b> "+owner;
-                        var numDeliveriesText = "<b>Items delivered this turn:</b> <span id='deliveries'>"+gameBoard.getNumberOfDeliveries(d.id)+"</span>";
-                        var productionText = "<b>Production:</b> "+gameBoard.regions[d.id].generator;
+                        var ownerText = "<p><b>Franchise Owner:</b> "+owner + "</p>";
+                        var numDeliveriesText = "<p><b>Pizzas Delivered This Turn:</b> <span id='deliveries'>"+gameBoard.getNumberOfDeliveries(d.id)+"</span></p>";
+                        var productionText = "<p><b>Franchise Pizza Production:</b> "+gameBoard.regions[d.id].generator + "</p>";
 
                         return [ownerText,numDeliveriesText,productionText].join("<br />");
                     });
@@ -305,6 +305,9 @@ update = function(state, isSummaryDisplayed) {
 
     resources.append("text")
           .text(function(d) {
+              if(state === "PRE") {
+                return "PRE-ROUND "; 
+              }
               return state + " ";
           })
           .attr("class","resource-text")
@@ -351,26 +354,28 @@ update = function(state, isSummaryDisplayed) {
 
         popup.append("div")
             .attr("class", "summary-header")
-            .text(state + " SUMMARY");
-
-        log(gameBoard);
-
+            .text(function(d) {
+              if(state === "PRE") {
+                return "PRE-ROUND SUMMARY";
+              } 
+              return state + " SUMMARY";
+            });
 
         if(state === "PRE") {
             popup.append("div")
               .attr("class", "summary-contents")
               .html(function(d) {
-                  return "<p><b>Current Round:</b> " + gameBoard.currentRound +"</p>" 
-                  + "<p><b>Number of Rounds Left:</b> "+ (gameBoard.numberOfRounds - gameBoard.currentRound) +"</p>"
-                  + "<p><b>Number of Players:</b> "+ gameBoard.players.length +"</p>";
+                  return "<p><b>Current Expansion Round:</b> " + gameBoard.currentRound +"</p>" 
+                  + "<p><b>Number of Expansion Rounds Left:</b> "+ (gameBoard.numberOfRounds - gameBoard.currentRound) +"</p>"
+                  + "<p><b>Number of Franchises:</b> "+ gameBoard.players.length +"</p>";
               });
         } else if (state === "END") {
             popup.append("div")
               .attr("class", "summary-contents")
               .html(function(d) {
                 log(gameBoard.getWinner());
-                  return "<p>Winner: " + gameBoard.getWinner().name +"</p>"
-                  + "<p>Number of Zones: " + gameBoard.getWinner().numResources +"</p>";
+                  return "<p>Conquering Franchise: " + gameBoard.getWinner().name +"</p>"
+                  + "<p>Number of Franchise Regions: " + gameBoard.getWinner().numResources +"</p>";
               });
         }
 
