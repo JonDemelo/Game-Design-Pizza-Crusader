@@ -164,6 +164,9 @@ z-index : 1;
 /*    min-width: 50px;*/
     margin-top: 10%;
     /*margin: 0 auto;*/
+    position: absolute;
+    right:    0;
+    bottom:   0;
 }
 
 .zone-buttons {

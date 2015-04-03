@@ -304,9 +304,9 @@ update = function(state, isSummaryDisplayed) {
             .style("opacity", .9);
 
         popup.style("left", width * 0.1 + "px")
-            .style("top", height * 0.2 + "px")
+            .style("top", height * 0.15 + "px")
             .style("width", width * 0.75 + "px")
-            .style("height", height * 0.6 + "px");
+            .style("height", height * 0.65 + "px");
 
         popup.append("div")
             .attr("class", "summary-header")
