@@ -91,22 +91,9 @@ update = function(state, isSummaryDisplayed) {
 
     path = path.data(voronoi(vertices), polygon);
 
-
-
     path.exit().remove();
 
     path.enter().append("path")
-        .attr("fill", function(d,i){
-            playerId = gameBoard.regions[i].playerId;
-
-            if (playerId === null){
-              return "grey"
-            }else{
-              return gameBoard.players[playerId].color
-            }
-
-        })
-        .classed("unfaded", true)
         .attr("d", polygon)
         .attr("opacity", function() {
             return 1;
@@ -214,7 +201,18 @@ update = function(state, isSummaryDisplayed) {
                 divOpen = false;
                 noZone = false;
             }
-        });
+        })
+        .attr("fill", function(d,i){
+            playerId = gameBoard.regions[i].playerId;
+
+            if (playerId === null){
+              return "grey"
+            }else{
+              return gameBoard.players[playerId].color
+            }
+
+        })
+        .classed("unfaded", true);
 
     path.order();
 
@@ -242,7 +240,7 @@ update = function(state, isSummaryDisplayed) {
 
     resources.append("text")
           .text(function(d) {
-              return game.currentState + " ";
+              return state + " ";
           })
           .attr("margin", 20+"px")
           .attr("height", 30 + "px")
