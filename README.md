@@ -32,6 +32,8 @@ A web server(such as apache, PHP, or python) needs to be started in the www/ fol
 ##Browser
 Simply opening the index.html provided in the www/ folder of the source will open the game.
 
+#Tutorial
+
 #Prototype State
 We focused on functionality rather than graphical design for this type. This means that non-gameplay elements have been mocked. 
 The elements that are mocked in the game include the high scores, store, matchmaking, and multiplayer components.

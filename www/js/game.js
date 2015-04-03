@@ -73,10 +73,19 @@ game.initialize = function(){
 			function(time){
 			},
 			function(){
-				//get bot name
-				var botName = botNames[Math.floor(Math.random()*botNames.length)];
-				botPlayer.name = botName;
-				$("#matchmaking-list").html("<li class='ui-li ui-li-static ui-btn-up-c ui-corner-top'>"+botName+"</li>");
+				$("#matchmaking-list").html("");
+				//get bot names
+
+				var tmpBotNames = botNames;
+				bots.forEach(function(bot){
+					var index = Math.floor(Math.random()*tmpBotNames.length)
+					var botName = tmpBotNames[index];	
+					bot.name = botName;
+					tmpBotNames.splice(index, 1);
+					$("#matchmaking-list").append("<li class='ui-li ui-li-static ui-btn-up-c ui-corner-top'>"+botName+"</li>");
+				});
+
+				
 				$("#matchmaking-loading").addClass("hidden")
 				$("#matchmaking-div").removeClass("hidden");
 				$("#play-game").prop("disabled",false)
@@ -108,14 +117,17 @@ game.initialize = function(){
 
 	function botActions(){
 		
-		var botRegions = gameBoard.getOwnedRegions(botPlayer.id);
-		var numResources = botPlayer.numResources;
-		for(i =0;i<numResources;i++){
-			var regionId = botRegions[Math.floor(Math.random()*botRegions.length)];
-			var neighbours = d3BoardData[regionId].neighbours;
-			var deliveryRegion = neighbours[Math.floor(Math.random()*neighbours.length)];
-			botPlayer.assignDelivery(deliveryRegion);
-		}
+		bots.forEach(function(bot){
+			var botRegions = gameBoard.getOwnedRegions(bot.id);
+			var numResources = bot.numResources;
+			for(i =0;i<numResources;i++){
+				var regionId = botRegions[Math.floor(Math.random()*botRegions.length)];
+				var neighbours = d3BoardData[regionId].neighbours;
+				var deliveryRegion = neighbours[Math.floor(Math.random()*neighbours.length)];
+				bot.assignDelivery(deliveryRegion);
+			}	
+		})
+		
 	}
 
 	/* ongoing round function */
