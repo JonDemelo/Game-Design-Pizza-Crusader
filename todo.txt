@@ -22,3 +22,11 @@ hmm, maybe faking matchmaking
 or at least make the menu look more robust
 
 fix bot so he isnt a cheating pos
+
+bot names:
+
+ZingBot
+MarshaBot
+ChenBot
+ArisaBot
+DrWillBot

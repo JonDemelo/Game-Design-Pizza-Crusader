@@ -97,8 +97,9 @@ update = function(state, isSummaryDisplayed) {
 
     path.enter().append("path")
         .attr("fill", function(d,i){
-            var playerId = gameBoard.regions[i].playerId
-            if ( playerId == null ){
+            playerId = gameBoard.regions[i].playerId;
+
+            if (playerId === null){
               return "grey"
             }else{
               return gameBoard.players[playerId].color
@@ -237,6 +238,14 @@ update = function(state, isSummaryDisplayed) {
         .style("top", height * 0.85 + "px")
         .style("width", width * 0.5 + "px")
         .style("height", 40 + "px");
+
+    resources.append("text")
+          .text(function(d) {
+              return game.currentState + " ";
+          })
+          .attr("margin", 20+"px")
+          .attr("height", 30 + "px")
+          .attr("width", 30 + "px");
 
     resources.append("img")
           .attr("src", "img/splash-pizza-2.PNG")
