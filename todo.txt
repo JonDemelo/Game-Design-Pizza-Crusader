@@ -1,32 +1,14 @@
-there needs to be a clear sign that you’ve added devilries to that zone, while still in that zone
-
-
-the map needs to update with new zone changes during the post state
+zones need to have visual representation on their current deliveries from the map.
 
 there’s a button issue that’s been plaguing me, sometimes the buttons use one style, somethimes another
+
 also there’s some text size issues in the summaries
 
-so there needs to be some text somewhere saying what state the game is in
-
-
 text sizing is off on some button labels and such
-
 better looking summary pages
+and zone page like stylistically
 
-and zone page
+center matchmaking stuff.
 
-like stylistically
+resource bar's numbers are sometimes off.
 
-hmm, maybe faking matchmaking
-
-or at least make the menu look more robust
-
-fix bot so he isnt a cheating pos
-
-bot names:
-
-ZingBot
-MarshaBot
-ChenBot
-ArisaBot
-DrWillBot
