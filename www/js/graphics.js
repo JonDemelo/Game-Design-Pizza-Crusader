@@ -94,6 +94,9 @@ update = function(state, isSummaryDisplayed) {
     path.exit().remove();
 
     path.enter().append("path")
+        .attr("id", function(d) {
+          return "path" + d.point.id;
+        })
         .attr("d", polygon)
         .attr("opacity", function() {
             return 1;
