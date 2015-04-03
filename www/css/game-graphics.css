@@ -191,3 +191,7 @@ z-index : 1;
     font-size: 20pt;
     height: 50px;
 }
+
+.resource-text{
+    font-size: 50%;
+}

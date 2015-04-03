@@ -267,6 +267,7 @@ update = function(state, isSummaryDisplayed) {
           .text(function(d) {
               return state + " ";
           })
+          .attr("class","resource-text")
           .attr("margin", 20+"px")
           .attr("height", 30 + "px")
           .attr("width", 30 + "px");
