@@ -91,8 +91,9 @@ update = function(state, isSummaryDisplayed) {
 
     path.enter().append("path")
         .attr("fill", function(d,i){
-            var playerId = gameBoard.regions[i].playerId
-            if ( playerId == null ){
+            playerId = gameBoard.regions[i].playerId;
+
+            if (playerId === null){
               return "grey"
             }else{
               return gameBoard.players[playerId].color
