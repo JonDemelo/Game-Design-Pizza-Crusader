@@ -233,6 +233,14 @@ update = function(state, isSummaryDisplayed) {
         .style("width", width * 0.5 + "px")
         .style("height", 40 + "px");
 
+    resources.append("text")
+          .text(function(d) {
+              return game.currentState + " ";
+          })
+          .attr("margin", 20+"px")
+          .attr("height", 30 + "px")
+          .attr("width", 30 + "px");
+
     resources.append("img")
           .attr("src", "img/splash-pizza-2.PNG")
           .attr("height", 30 + "px")
