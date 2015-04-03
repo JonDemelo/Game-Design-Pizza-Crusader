@@ -335,7 +335,7 @@ update = function(state, isSummaryDisplayed) {
 
         if(state === "END") {
           popup.append("button")
-              .attr("class", "summary-button")
+              .attr("class", "ui-btn ui-shadow ui-corner-all summary-button")
               .on("click", function(d) {
                   popup.transition().duration(200)
                       .style("pointer-events", "none")
