@@ -8,7 +8,6 @@ text sizing is off on some button labels and such
 better looking summary pages
 and zone page like stylistically
 
-center matchmaking stuff.
 
 resource bar's numbers are sometimes off.
 
