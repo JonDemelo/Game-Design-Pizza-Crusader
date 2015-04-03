@@ -18,7 +18,7 @@
  */
 
 log = function (m) {
-    console.log(m);
+    //console.log(m);
 }
 
 $(document).on("ready",function(){
