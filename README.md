@@ -48,7 +48,23 @@ Clicking this button will take the player into matchmaking. Matchmaking matches 
 From this point on, the player can continue and click "Play Game" or return to the main menu by clicking "Back".
 
 ###In Game
-The game has 3 main states. Pre, Round, and End. The current state of the game is present at the bottom. 
+The game has 3 main states. Pre, Round, and End. The current state of the game is present at the bottom.
+
+####User Interface
+At the top left is a timer that indicates how much time is left in the current round. The top right has an X which lets the player quit the current game and return to the main menu.
+
+At the bottom, the current game state is shown as well as a pizza icon and a red bar icon. The number beside the pizza icon indicates how many resources the player has remaining.
+ 
+
+####Pre Round
+This state displays a brief summary of the current state of the game. The player cannot interact with the game board at this time.
+
+####Round
+This is the state where the player can send deliveries to neighbouring zones from their currently controlled zones. The player is shown in the color red. In order to deliver pizzas to other zones, the player clicks on the other zone and hits the +1 button.
+In order to remove deliveries from a zone, the user clicks on the -1 button. The +1 and -1 button are disabled if the user does not have enough resources of there are no resources left. 
+
+####End
+This state is only reached when all the zones are conquered by a single player or there are no remaining zones left. 
 
 #Prototype State
 We focused on functionality rather than graphical design for this type. This means that non-gameplay elements have been mocked. 
