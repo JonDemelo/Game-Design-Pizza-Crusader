@@ -306,9 +306,9 @@ update = function(state, isSummaryDisplayed) {
     resources.append("text")
           .text(function(d) {
               if(state === "PRE") {
-                return "PRE-ROUND "; 
+                return "PHASE: " + "PRE-ROUND "; 
               }
-              return state + " ";
+              return "PHASE: " + state + " ";
           })
           .attr("class","resource-text")
           .attr("margin", 20+"px")
