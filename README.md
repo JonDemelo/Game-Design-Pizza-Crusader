@@ -33,6 +33,22 @@ A web server(such as apache, PHP, or python) needs to be started in the www/ fol
 Simply opening the index.html provided in the www/ folder of the source will open the game.
 
 #Tutorial
+The main screen is present after the application is launcher. From here, clicking on any of the buttons present will navigate to that screen. The back button on top of the screen will allow you to go back to the previous screen.
+##High Scores - Mocked
+This shows the high scores of all the players in the game. 
+
+##Store - Mocked
+This allows the player to purchase upgrades that can be used in game
+
+##About
+This screen displays the backstory to the game.
+
+##Play Game
+Clicking this button will take the player into matchmaking. Matchmaking matches the player with 3 other players to play a game with. In this prototype, the matchmaking is mocked and 3 bots are assigned to the game. 
+From this point on, the player can continue and click "Play Game" or return to the main menu by clicking "Back".
+
+###In Game
+The game has 3 main states. Pre, Round, and End. The current state of the game is present at the bottom. 
 
 #Prototype State
 We focused on functionality rather than graphical design for this type. This means that non-gameplay elements have been mocked. 
