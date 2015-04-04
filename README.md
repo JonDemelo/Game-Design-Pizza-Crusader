@@ -23,14 +23,14 @@ If you do not have an Android device, an Android emulator can be used. Follow th
 #Execute
 There are 3 ways you can execute the game. Running the game on the phone required to follow the build and install steps described above. The other two ways do not require build processes.
 
+##Browser - Preferred Method
+Simply opening the index.html provided in the www/ folder of the source will open the game.
+
 ##Phone
 After the install process, Pizza Crusader will appear in the app drawer of your phone. Clicking this icon will launch and play the game.
 
 ##PhoneGap Emulator
 A web server(such as apache, PHP, or python) needs to be started in the www/ folder in the given source. Go to http://emulate.phonegap.com/ and enter in ip address of the new server started(usually localhost:8080). This site allows you to mock an android device and run the game directly from the source.
-
-##Browser
-Simply opening the index.html provided in the www/ folder of the source will open the game.
 
 #Tutorial
 The main screen is present after the application is launcher. From here, clicking on any of the buttons present will navigate to that screen. The back button on top of the screen will allow you to go back to the previous screen.
