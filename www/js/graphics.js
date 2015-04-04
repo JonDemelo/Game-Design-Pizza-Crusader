@@ -367,7 +367,7 @@ update = function(state, isSummaryDisplayed) {
               .html(function(d) {
                   return "<p><b>Current Expansion Round:</b> " + gameBoard.currentRound +"</p>" 
                   + "<p><b>Number of Expansion Rounds Left:</b> "+ (gameBoard.numberOfRounds - gameBoard.currentRound) +"</p>"
-                  + "<p><b>Number of Franchises:</b> "+ gameBoard.players.length +"</p>";
+                  + "<p><b>Number of Franchises:</b> "+ gameBoard.numFranchies() +"</p>";
               });
         } else if (state === "END") {
             popup.append("div")

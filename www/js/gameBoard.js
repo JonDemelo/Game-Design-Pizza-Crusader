@@ -65,6 +65,17 @@ GameBoard.prototype.canDeliver = function(playerId, regionId){
 
 }
 
+GameBoard.prototype.numFranchies = function(){
+	var num = 0;
+	var self = this;
+	this.players.forEach(function(player){
+		if ( self.getOwnedRegions(player.id).length > 0 ){
+			num++;
+		}
+	})
+	return num;
+}
+
 
 GameBoard.prototype.endRound = function(){
 	//update which region belongs to which player
