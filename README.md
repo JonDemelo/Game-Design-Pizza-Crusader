@@ -79,3 +79,7 @@ Future updates would include better visualization of graphics to bring them more
 
 The mocked out functionality would also be implemented as described in the TDD.  One of the main features is a randomly generated map which is currently not present.
 Sounds and music that would normally be present in the game would also be included to round out the gameplay experience.
+
+#Credits
+Created by Jon Demelo and Ramesh Raj
+
